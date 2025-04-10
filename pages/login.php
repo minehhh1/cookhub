@@ -18,7 +18,7 @@ if($login === 'login'){
             <title>Document</title>
         </head>
         <body>
-            <form method="post" action="../public/appunti.html">
+            <form method="post" action="../public/start.html">
                 <input type="submit" value="avanti">
             </form>
         </body>
