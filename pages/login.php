@@ -39,8 +39,8 @@ if($login === 'login'){
     </head>
     <body>
         <form method="post" action="login.php">
-            <input type="text" name="email" value="email">
-            <input type="password" name="password" value="password">
+            <input type="text" name="email">
+            <input type="password" name="password">
             <input type="submit" value="login" name="login">
         </form>
     </body>
