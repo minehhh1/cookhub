@@ -39,10 +39,11 @@ if($login === 'login'){
     </head>
     <body>
         <form method="post" action="login.php">
-            <input type="text" name="email">
-            <input type="password" name="password">
+            <input type="text" name="email" placeholder="email">
+            <input type="password" name="password" placeholder="password">
             <input type="submit" value="login" name="login">
         </form>
+        Prima volta su CookHub? <a href="registrazione.php">Iscriviti</a>
     </body>
     </html>
 <?php }
