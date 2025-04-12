@@ -1,34 +1,40 @@
 <?php
 session_start();
 
-$login = $_POST['login'] ?? "";
-$email = $_POST['email'] ?? "";
-$password = $_POST['password'] ?? "";
-if($login === 'login'){
-    if($email === "minehhhpro@gmail.com" && $password === "zitto"){
+if (isset($_POST['login'])) {
+    $email = $_POST['email'] ?? "";
+    $password = $_POST['password'] ?? "";
+
+    if ($email === "minehhhpro@gmail.com" && $password === "zitto") {
         $_SESSION['email'] = $email;
+        $_SESSION['welcome'] = "Benvenuto " . $email;
         header("Location: index.php");
         exit();
-        ?>
-<?php
-
-    }else{
-        echo 'credenziali sbagliate!';
+    } else {
+        $error = "Credenziali sbagliate!";
     }
-}else{
-    $pageTitle = "Login";
-    $activePage = "login";
-    include '../includes/header.php';
-    include '../includes/navbar.php';
-    ?>
-        <form method="post" action="login.php">
-            <input type="text" name="email" placeholder="email">
-            <input type="password" name="password" placeholder="password">
-            <input type="submit" value="login" name="login">
-        </form>
-        Prima volta su CookHub? <a href="registrazione.php">Iscriviti</a>
-<?php
-    include '../includes/footer.php';
 }
+
+$pageTitle = "Login";
+$activePage = "login";
+include '../includes/header.php';
+include '../includes/navbar.php';
 ?>
+
+<div class="container mt-5">
+    <?php if (isset($error)): ?>
+        <div class="alert alert-danger"><?= $error ?></div>
+    <?php endif; ?>
+
+    <form method="post" action="login.php">
+        <input type="text" name="email" placeholder="Email" required class="form-control mb-2">
+        <input type="password" name="password" placeholder="Password" required class="form-control mb-2">
+        <input type="submit" value="Login" name="login" class="btn btn-primary">
+    </form>
+    <p class="mt-3">Prima volta su Cookhub? <a href="register.php">Iscriviti</a></p>
+</div>
+
+<?php include '../includes/footer.php'; ?>
+
+
 
