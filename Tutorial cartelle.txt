@@ -1,5 +1,5 @@
-📁 coockhub/
-├── 📁 public/ (visibile dal browser)
+📁 cookhub/
+├── 📁 public/ (visibile dal browser)   //non servono a un cabbo le pagine .html
 │  ├── 📄 index.php
 │  ├── 📁 css/
 │  ├── 📁 js/
