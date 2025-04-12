@@ -5,21 +5,20 @@ $activePage = "home";
 
 include '../includes/header.php';
 include '../includes/navbar.php';
-include '../includes/footer.php';
 
 // Simulazione post (array vuoto)
 $posts = array();
 
-?>
+if (isset($_SESSION['welcome'])){
+    ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?= $_SESSION['welcome'] ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php unset($_SESSION['welcome']);
+}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+?>
     <hr>
     <!-- Form per creare un nuovo post -->
     <h2>Crea un nuovo post</h2>
@@ -41,6 +40,6 @@ $posts = array();
             <hr>
         <?php endforeach; ?>
     <?php endif; ?>
-
-</body>
-</html>
+<?php
+include '../includes/footer.php';
+?>
