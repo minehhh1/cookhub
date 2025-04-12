@@ -52,7 +52,7 @@ if($registrazione === 'registrati'){
             <input type="submit" value="registrati" name="registrati">
         </form>
 
-        
+        Hai gia un account su CookHub? <a href="login.php">Accedi</a>
     </body>
     </html>
 
