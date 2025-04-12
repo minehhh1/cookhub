@@ -7,11 +7,10 @@ $password = $_POST['password'] ?? "";
 if($login === 'login'){
     if($email === "minehhhpro@gmail.com" && $password === "zitto"){
         $_SESSION['email'] = $email;
-        echo 'sessione "penso" creata con successo!';
-        echo 'la sessione non funziona quindi non è giusto';
-        header("index.php");
+        header("Location: index.php");
+        exit();
         ?>
-        <?php
+<?php
 
     }else{
         echo 'credenziali sbagliate!';
@@ -28,8 +27,8 @@ if($login === 'login'){
             <input type="submit" value="login" name="login">
         </form>
         Prima volta su CookHub? <a href="registrazione.php">Iscriviti</a>
-    </body>
-    </html>
-<?php }
+<?php
+    include '../includes/footer.php';
+}
 ?>
 
