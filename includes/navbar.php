@@ -7,7 +7,8 @@ if (session_status() === PHP_SESSION_NONE) {
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
     <a class="navbar-brand" href="../pages/index.php">
-      <img src="../assets/CH_logoLungoBlack.svg" alt="Logo" width="130" height="50" class="d-inline-block align-text-top">
+    <!-- <img src="../assets/CH_logoLungoBlack.svg" alt="Logo" width="130" height="50" class="d-inline-block align-text-top">-->
+  <a class="navbar-brand" href="../pages/index.php">
     </a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
