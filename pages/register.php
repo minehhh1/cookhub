@@ -1,49 +1,48 @@
 <?php
 session_start();
-// require_once 'config.php'; // Da attivare quando colleghi il DB
+require_once '../config/config.php'; // File di configurazione del DB
 
-if (isset($_POST['registrati'])) {
-    // Recupera i dati dal form
-    $nome = $_POST['nome'] ?? "";
-    $cognome = $_POST['cognome'] ?? "";
-    $email = $_POST['email'] ?? "";
-    $password = $_POST['password'] ?? "";
+$register = $_POST['signUp'] ?? '';
 
-    // 🔐 Consiglio: cifra la password
-    // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+$username = $_POST['username'] ?? '';
+$email = $_POST['email'] ?? '';
+$password = $_POST['password'] ?? '';
 
-    // Esempio simulato (quando userai il DB, lo inserirai qui)
-    /*
-    $sql = "INSERT INTO utente (nome, cognome, email, password) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $nome, $cognome, $email, $hashedPassword);
-    $stmt->execute();
-    */
+if($register === 'register'){
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        $hashPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Salvo messaggio di successo
-    $_SESSION['welcome'] = "Registrazione avvenuta con successo! Ora puoi accedere.";
-    header("Location: login.php");
-    exit();
-}
+        $sql = "INSERT INTO utente(username, email, password, data_registrazione) VALUES( ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $temp2 = date('Y-m-d');
+        $stmt->bind_param("ssss", $username, $email, $hashPassword, $temp2);
 
-// Altrimenti mostra il form
-$pageTitle = "Registrazione";
-$activePage = "register";
-include '../includes/header.php';
-include '../includes/navbar.php';
-?>
+        if($stmt->execute()){
+            echo "Utente inserito correttamente";
+            $_SESSION['username'] = $username;
+            $_SESSION['id_utente'] = $conn->insert_id;
 
-<div class="container mt-5">
-    <h2>Registrati a Cookhub</h2>
-    <form method="post" action="registrazione.php">
-        <input type="text" name="nome" placeholder="Nome" required class="form-control mb-2">
-        <input type="text" name="cognome" placeholder="Cognome" required class="form-control mb-2">
-        <input type="email" name="email" placeholder="Email" required class="form-control mb-2">
-        <input type="password" name="password" placeholder="Password" required class="form-control mb-2">
-        <input type="submit" value="Registrati" name="registrati" class="btn btn-success">
+            header("location: index.php");
+        }else{
+            echo "Inserimento fallito: " . $stmt->error;
+        }
+    }
+}else{ ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+    <form action="register.php" method="post">
+        <input type="text" name="username" placeholder="inserisci nome utente"><br>
+        <input type="email" name="email" placeholder="inserisci email"><br>
+        <input type="password" name="password" placeholder="inserisci la password"><br><br>
+        <input type="submit" name="signUp" value="register">
     </form>
-    <p class="mt-3">Hai già un account su Cookhub? <a href="login.php">Accedi</a></p>
-</div>
+    </body>
+    </html>
 
-<?php include '../includes/footer.php'; ?>
-
+<?php } ?>
