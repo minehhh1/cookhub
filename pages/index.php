@@ -38,7 +38,7 @@ if ($result === false) {
 
 <div class="container mt-4">
     <!-- Form per creare un nuovo post -->
-    <?php if(isset($_SESSION['user_id'])): ?>
+    <?php if(isset($_SESSION['id_utente'])){ ?>
         <div class="card mb-4">
             <div class="card-body">
                 <h2 class="card-title">Crea un nuovo post</h2>
@@ -50,11 +50,11 @@ if ($result === false) {
                 </form>
             </div>
         </div>
-    <?php else: ?>
+    <?php }else{ ?>
         <div class="alert alert-info">
             <a href="login.php" class="alert-link">Accedi</a> per pubblicare un post
         </div>
-    <?php endif; ?>
+    <?php } ?>
 
     <!-- Lista dei post -->
     <h2 class="mb-3">Post pubblicati</h2>

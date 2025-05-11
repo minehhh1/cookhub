@@ -20,14 +20,17 @@ if($register === 'register'){
         if($stmt->execute()){
             echo "Utente inserito correttamente";
             $_SESSION['username'] = $username;
-            $_SESSION['id_utente'] = $conn->insert_id;
 
-            header("location: index.php");
+            header("location: login.php");
         }else{
             echo "Inserimento fallito: " . $stmt->error;
         }
     }
-}else{ ?>
+}else{ 
+    $pageTitle = "Login";
+    $activePage = "login";
+    include '../includes/header.php';
+    include '../includes/navbar.php';?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -36,12 +39,21 @@ if($register === 'register'){
         <title>Document</title>
     </head>
     <body>
+        
+    <div class="container mt-5">
+    <?php if (isset($error)): ?>
+        <div class="alert alert-danger"><?= $error ?></div>
+    <?php endif; ?>
+
     <form action="register.php" method="post">
-        <input type="text" name="username" placeholder="inserisci nome utente"><br>
-        <input type="email" name="email" placeholder="inserisci email"><br>
-        <input type="password" name="password" placeholder="inserisci la password"><br><br>
-        <input type="submit" name="signUp" value="register">
+        <input type="text" name="username" placeholder="inserisci nome utente" required class="form-control mb-2">
+        <input type="email" name="email" placeholder="inserisci email" required class="form-control mb-2">
+        <input type="password" name="password" placeholder="inserisci la password" required class="form-control mb-2"><br>
+        <input type="submit" name="signUp" value="register" class="btn btn-primary">
     </form>
+    <p class="mt-3">Hai gia un account su Cookhub? <a href="login.php">Accedi</a></p>
+
+    <?php include '../includes/footer.php'; ?>
     </body>
     </html>
 
