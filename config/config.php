@@ -1,8 +1,12 @@
 <?php
-$hostname=getenv("cookhubhost");
+/*$hostname=getenv("cookhubhost");
 $username=getenv("cookhubusername");
 $password=getenv("cookhubpassword");
-$database=getenv("cookhubdb");
+$database=getenv("cookhubdb");*/
+$hostname='cookhubsql.mysql.database.azure.com';
+$username='cookhub_admin';
+$password='LoreMelekLaSalvia!';
+$database='cookhub';
 $port="3306";
 // creo la connessione
 $conn=new mysqli($hostname,$username,$password,$database,$port);
