@@ -26,11 +26,8 @@ if($register === 'register'){
             echo "Inserimento fallito: " . $stmt->error;
         }
     }
-}else{ 
-    $pageTitle = "Login";
-    $activePage = "login";
-    include '../includes/header.php';
-    include '../includes/navbar.php';?>
+}
+?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -44,17 +41,4 @@ if($register === 'register'){
     <?php if (isset($error)): ?>
         <div class="alert alert-danger"><?= $error ?></div>
     <?php endif; ?>
-
-    <form action="register.php" method="post">
-        <input type="text" name="username" placeholder="inserisci nome utente" required class="form-control mb-2">
-        <input type="email" name="email" placeholder="inserisci email" required class="form-control mb-2">
-        <input type="password" name="password" placeholder="inserisci la password" required class="form-control mb-2"><br>
-        <input type="submit" name="signUp" value="register" class="btn btn-primary">
-    </form>
-    <p class="mt-3">Hai gia un account su Cookhub? <a href="login.php">Accedi</a></p>
-
-    <?php include '../includes/footer.php'; ?>
-    </body>
-    </html>
-
-<?php } ?>
+    

@@ -52,7 +52,7 @@ if ($result === false) {
         </div>
     <?php }else{ ?>
         <div class="alert alert-info">
-            <a href="login.php" class="alert-link">Accedi</a> per pubblicare un post
+            <a href="#" class="alert-link" data-bs-toggle="modal" data-bs-target="#loginModal">Accedi</a> per pubblicare un post
         </div>
     <?php } ?>
 
@@ -82,6 +82,10 @@ if ($result === false) {
     <?php endif; ?>
 </div>
 
+
+
 <?php
 include '../includes/footer.php';
+include '../includes/loginModal.html';
+include '../includes/registerModal.html';
 ?>

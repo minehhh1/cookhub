@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
     </a>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <?php if (isset($_SESSION['email'])): ?>
+        <?php if (isset($_SESSION['email'])){ ?>
           <li class="nav-item">
             <span class="navbar-text text-white me-3">
                 <?= htmlspecialchars($_SESSION['email']) ?>
@@ -21,14 +21,14 @@ if (session_status() === PHP_SESSION_NONE) {
           <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>
           </li>
-        <?php else: ?>
+        <?php }else{ ?>
           <li class="nav-item">
-            <a class="nav-link <?= $activePage === 'login' ? 'active' : '' ?>" href="login.php">Login</a>
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <?= $activePage === 'register' ? 'active' : '' ?>" href="register.php">Registrati</a>
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Registrati</a>
           </li>
-        <?php endif; ?>
+        <?php } ?>
       </ul>
     </div>
   </div>
