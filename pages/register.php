@@ -27,9 +27,8 @@ if($register === 'register'){
         }
     }
 }
-?>
 
-    <?php if (isset($error)): ?>
+if (isset($error)): ?>
         <div class="alert alert-danger"><?= $error ?></div>
     <?php endif; ?>
     

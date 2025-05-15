@@ -75,7 +75,7 @@ if ($result === false) {
                             Pubblicato da <strong><?= htmlspecialchars($post['username']) ?></strong> 
                             il <?= date('d/m/Y', strtotime($post['data_creazione'])) ?>
                         </small>
-                        <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post['id_utente']): ?>
+                        <?php if(isset($_SESSION['id_utente']) && $_SESSION['id_utente'] == $post['id_utente']): ?>
                             <a href="../actions/delete_post.php?id=<?= $post['id'] ?>" class="btn btn-sm btn-outline-danger">Elimina</a>
                         <?php endif; ?>
                     </div>
