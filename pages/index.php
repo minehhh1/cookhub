@@ -39,6 +39,9 @@ if ($result === false) {
 <div class="container mt-4">
     <!-- Form per creare un nuovo post -->
     <?php if(isset($_SESSION['id_utente'])){ ?>
+        <form action="profile.php" method="GET">
+            <input type="submit" name="profile" value="profile">
+        </form>
         <div class="card mb-4">
             <div class="card-body">
                 <h2 class="card-title">Crea un nuovo post</h2>

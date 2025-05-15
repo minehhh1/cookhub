@@ -1,0 +1,24 @@
+📁 cookhub/
+├── 📁 public/ (visibile dal browser)   //non servono a un cabbo le pagine .html
+│  ├── 📄 index.php
+│  ├── 📁 css/
+│  ├── 📁 js/
+│  ├── 📁 images/
+│  └── 📁 uploads/ (per immagini ricette ecc.)
+├── 📁 includes/ (per pezzi riutilizzabili tipo header/footer)
+│  ├── header.php
+│  ├── footer.php
+│  └── nav.php
+├── 📁 pages/ (per le varie pagine tipo home, ricette, profilo...)
+│  ├── home.php
+│  ├── ricette.php
+│  ├── profilo.php
+│  └── login.php
+├── 📁 functions/ (funzioni PHP riutilizzabili)
+│  └── db.php (connessione al database)
+├── 📁 config/ (configurazioni varie, es. costanti, db)
+│  └── config.php
+├── 📁 assets/ (contenuti statici condivisi)
+│  ├── fonts/
+│  └── icons/
+└── 📄 .htaccess (per riscrittura URL, sicurezza ecc.)
