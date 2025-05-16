@@ -59,6 +59,10 @@ if (session_status() === PHP_SESSION_NONE) {
     </ul>
   </div>
 </div>
+ <?php 
+  include '../includes/loginModal.html';
+  include '../includes/registerModal.html';
+?>
 
 
 
