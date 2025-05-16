@@ -13,4 +13,5 @@
   <link rel="stylesheet" href="../style/styles.css">
 </head>
 <body style="font-family: 'Nunito', sans-serif;">
+  <?php include '../includes/navbar.php'; ?>
 

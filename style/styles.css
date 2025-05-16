@@ -1,78 +1,128 @@
-/* Modale centrato e di dimensioni limitate */
-.modal-dialog {
-    max-width: 500px;
-    width: 90%;
+/* Per switchare da chiaro a scuro */
+body {
+  background-color: #fdfaf6;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* Personalizzazione della testata del modale */
-.modal-header {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-    padding: 1rem 1.25rem;
+body.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
 }
 
-/* Personalizzazione del bottone di chiusura "X" */
-.modal-header .btn-close {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem; /* Dimensione maggiore per la "X" */
-    color: #333; /* Colore scuro per la "X" */
-    opacity: 0.7;
-    filter: invert(0);
+.navbar.dark-mode,
+footer.dark-mode {
+  background-color: #1e1e1e !important;
 }
 
-.modal-header .btn-close:hover,
-.modal-header .btn-close:focus {
-    opacity: 1; /* Aumenta l'opacità al passaggio del mouse */
-    color: #ff7e5f; /* Colore hover della "X" */
+.card.dark-mode {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
 }
 
-/* Personalizzazione del titolo del modale */
-.modal-title {
-    font-size: 1.25rem;
-    color: #333;
+.alert.dark-mode {
+  background-color: #2a2a2a;
+  border-color: #444;
+  color: #ddd;
 }
 
-/* Aggiunta di spaziatura ai campi del form */
-.modal-body .form-control {
-    margin-bottom: 1rem;
+/* Reddit-like palette */
+:root {
+  --reddit-orange: #ff4500;
+  --reddit-blue: #0079d3;
+  --reddit-bg: #dae0e6;
+  --reddit-card: #fff;
+  --reddit-border: #edeff1;
+  --reddit-gray: #878a8c;
+  --reddit-dark: #1a1a1b;
 }
 
-/* Animazione per il modale */
+/* Login/Register Modal */
 .modal-content {
-    animation: slideIn 0.3s ease-out;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 18px;
+  border: none;
+  background: var(--reddit-card);
+  box-shadow: 0 4px 32px rgba(0,0,0,0.13);
+  padding: 0 24px 24px 24px;
 }
 
-@keyframes slideIn {
-    from {
-        transform: translateY(20%);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.modal-header {
+  border-bottom: none;
+  padding-top: 24px;
+  padding-bottom: 0;
+  background: transparent;
 }
 
-/* Personalizzazione del bottone */
+.modal-title {
+  font-weight: 700;
+  color: var(--reddit-orange);
+  font-size: 1.7rem;
+  letter-spacing: -1px;
+}
+
+.modal-body {
+  padding-top: 12px;
+  padding-bottom: 0;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--reddit-gray);
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1.5px solid var(--reddit-border);
+  background: #f6f7f8;
+  color: var(--reddit-dark);
+  font-size: 1rem;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: var(--reddit-orange);
+  box-shadow: 0 0 0 2px rgba(255,69,0,0.13);
+}
+
 .btn-primary {
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
-    border: none;
+  background: var(--reddit-orange);
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 8px 0;
+  margin-top: 8px;
+  transition: background 0.2s;
 }
 
-.btn-secondary {
-    background-color: #6c757d;
-    border: none;
+.btn-primary:hover, .btn-primary:focus {
+  background: #d93a00;
 }
 
-/* Colore hover per il bottone "Accedi" */r
-.btn-primary:hover {
-    background: linear-gradient(135deg, #feb47b, #ff7e5f);
+.modal-footer {
+  border-top: none;
+  background: transparent;
+  padding-bottom: 12px;
 }
 
-/* Per nascondere la freccia del dropdown */
-.navbar .dropdown-toggle::after {
-    display: none;
+.modal .form-control::placeholder {
+  color: var(--reddit-gray);
+  opacity: 1;
+}
+
+.modal-body a {
+  color: var(--reddit-blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+.modal-body a:hover {
+  text-decoration: underline;
+}
+
+/* Migliora il background della pagina */
+body {
+  background: var(--reddit-bg);
+  color: var(--reddit-dark);
+  font-family: 'Nunito', Arial, sans-serif;
 }

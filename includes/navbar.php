@@ -36,6 +36,9 @@ if (session_status() === PHP_SESSION_NONE) {
           <li class="nav-item">
             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Registrati</a>
           </li>
+          <li class="nav-item d-flex align-items-center">
+            <button id="themeToggle" class="btn btn-sm btn-outline-light ms-3">🌙</button>
+          </li>
         <?php } ?>
       </ul>
     </div>

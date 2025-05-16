@@ -4,7 +4,6 @@ $pageTitle = "Home";
 $activePage = "home";
 
 include '../includes/header.php';
-include '../includes/navbar.php';
 require_once '../config/config.php'; // Connessione al DB
 
 // Mostra messaggio di benvenuto
@@ -25,7 +24,8 @@ $posts = [];
 $query = "SELECT Post.*, Utente.username 
           FROM Post 
           JOIN Utente ON Post.id_utente = Utente.id 
-          ORDER BY Post.data_creazione DESC";
+          ORDER BY Post.data_creazione DESC
+          LIMIT 10";
 
 $result = $conn->query($query);
 
