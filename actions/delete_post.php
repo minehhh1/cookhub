@@ -1,15 +1,9 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['error'] = "Accesso non autorizzato";
-    header('Location: ../login.php');
-    exit;
-}
-
 if (!isset($_GET['id'])) {
     $_SESSION['error'] = "Post non specificato";
-    header('Location: ../index.php');
+    header('Location: ../pages/index.php');
     exit;
 }
 
@@ -40,6 +34,6 @@ if ($result === false) {
     }
 }
 
-header('Location: ../index.php');
+header('Location: ../pages/index.php');
 exit;
 ?>

@@ -1,30 +1,35 @@
 <?php
 session_start();
+require_once '../config/config.php'; // File di configurazione del DB
 
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['error'] = "Devi effettuare l'accesso per pubblicare un post";
-    header('Location: ../login.php');
+$contenuto = $_POST['post_content'] ?? '';
+
+if (!isset($_SESSION['id_utente'])) {
+    header("Location: index.php");
     exit;
 }
 
-require_once '../config/config.php';
+$id_utente = $_SESSION['id_utente'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['post_content'])) {
-    $content = trim($conn->real_escape_string($_POST['post_content']));
-    $user_id = $_SESSION['user_id'];
-    $date = date('Y-m-d');
-    
-    $query = "INSERT INTO Post (contenuto, data_creazione, id_utente) VALUES ('$content', '$date', $user_id)";
-    
-    if ($conn->query($query)) {
-        $_SESSION['success'] = "Post pubblicato con successo!";
-    } else {
-        $_SESSION['error'] = "Errore durante la pubblicazione del post: " . $conn->error;
-    }
-} else {
-    $_SESSION['error'] = "Il contenuto del post non può essere vuoto";
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+    $contenuto = $_POST['post_content'];
+
+	$sql = "INSERT INTO post(contenuto, data_creazione, id_utente) VALUES( ?, ?, ?)";
+	$stmt = $conn->prepare($sql);
+	$temp2 = date('Y-m-d');
+	$stmt->bind_param("sss", $contenuto, $temp2, $id_utente);
+
+	if($stmt->execute()){
+		echo "Post creato correttamente";
+		//$_SESSION[''] = ;
+
+		header("location: ../pages/index.php");
+	}else{
+		echo "Inserimento fallito: " . $stmt->error;
+	}
 }
 
-header('Location: ../index.php');
-exit;
-?>
+if (isset($error)): ?>
+        <div class="alert alert-danger"><?= $error ?></div>
+    <?php endif; ?>
+    
