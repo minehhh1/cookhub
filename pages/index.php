@@ -127,7 +127,10 @@ if ($result === false) {
                     
                     <div class="d-flex justify-content-between align-items-center mt-2">
                         <small class="text-muted">
-                            Post di <strong><?= htmlspecialchars($post['username']) ?></strong> 
+                            Post di 
+                            <a href="../pages/profile.php?id=<?= $post['id_utente'] ?>" class="text-decoration-none"> <!-- Aggiunto ../ -->
+                                <strong class="text-primary"><?= htmlspecialchars($post['username']) ?></strong>
+                            </a> 
                             il <?= date('d/m/Y', strtotime($post['data_creazione'])) ?>
                         </small>
                         <?php if (isset($_SESSION['id_utente']) && $_SESSION['id_utente'] == $post['id_utente']): ?>
