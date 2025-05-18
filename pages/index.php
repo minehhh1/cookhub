@@ -67,7 +67,7 @@ if ($result === false) {
     <?php endif; ?>
 
     <!-- Lista post -->
-    <h3 class="mb-4 fw-bold text-dark">Ultimi post dalla community</h3>
+    <h3 class="mb-4 fw-bold">Ultimi post dalla community</h3>
 
     <?php if (empty($posts)): ?>
         <div class="alert alert-secondary text-center">

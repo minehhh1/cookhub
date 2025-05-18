@@ -6,26 +6,26 @@
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  const toggle = document.getElementById('themeToggle');
-  const body = document.body;
+  const toggleButton = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  // Applica la preferenza salvata
-  if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark-mode');
-    document.querySelectorAll('.navbar, footer, .card, .alert').forEach(el => el.classList.add('dark-mode'));
+  if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
+    document.body.classList.add('dark-mode');
+    document.querySelectorAll('.navbar, footer, .card').forEach(el => el.classList.add('dark-mode'));
+    themeIcon.classList.replace('bi-moon-stars-fill', 'bi-sun-fill');
   }
 
-  toggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    document.querySelectorAll('.navbar, footer, .card, .alert').forEach(el => el.classList.toggle('dark-mode'));
+  toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    document.querySelectorAll('.navbar, footer, .card').forEach(el => el.classList.toggle('dark-mode'));
 
-    // Salva la preferenza
-    const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
-    localStorage.setItem('theme', theme);
-
-    // Cambia icona (opzionale)
-    toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+    const isDark = document.body.classList.contains('dark-mode');
+    themeIcon.classList.toggle('bi-moon-stars-fill', !isDark);
+    themeIcon.classList.toggle('bi-sun-fill', isDark);
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 </script>
+
 </body>
 </html>

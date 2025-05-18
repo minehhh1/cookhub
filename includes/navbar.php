@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
 
     <!-- Bottone hamburger personalizzato che apre l'offcanvas -->
@@ -12,10 +12,12 @@ if (session_status() === PHP_SESSION_NONE) {
       <img src="../assets/hamburger.svg" alt="Menu" width="30" height="30">
     </button>
 
-    <!-- Logo 
-    <a class="navbar-brand" href="#">
-      <img src="../assets/CH_logoLungoBlack.svg" alt="Logo" width="130" height="50">
-    </a>-->
+
+    <a class="navbar-brand" href="index.php">
+      <img src="../assets/CH_logoLungoDark.svg" alt="Logo chiaro" class="logo-light d-inline-block align-text-top">
+      <img src="../assets/CH_logoLungoLight.svg" alt="Logo scuro" class="logo-dark d-none align-text-top">
+    </a>
+
 
     <!-- Navbar principale -->
     <div class="collapse navbar-collapse justify-content-end">
@@ -36,10 +38,12 @@ if (session_status() === PHP_SESSION_NONE) {
           <li class="nav-item">
             <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Registrati</a>
           </li>
-          <li class="nav-item d-flex align-items-center">
-            <button id="themeToggle" class="btn btn-sm btn-outline-light ms-3">🌙</button>
-          </li>
         <?php } ?>
+        <li class="nav-item d-flex align-items-center">
+        <button id="themeToggle" class="btn btn-sm btn-outline-light ms-3">
+          <i id="themeIcon" class="bi bi-moon-stars-fill"></i>
+        </button>
+        </li>
       </ul>
     </div>
   </div>
@@ -66,7 +70,5 @@ if (session_status() === PHP_SESSION_NONE) {
   include '../includes/loginModal.html';
   include '../includes/registerModal.html';
 ?>
-
-
 
 
