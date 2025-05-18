@@ -89,6 +89,42 @@ if ($result === false) {
                         </form>
                     </div>
                     
+                    <!-- Sezione Commenti -->
+                    <div class="comment-section mt-3">
+                        <?php if (isset($_SESSION['id_utente'])): ?>
+                            <form action="../actions/aggiungi_commento.php" method="POST" class="mb-3">
+                                <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                                <div class="input-group">
+                                    <input type="text" name="testo" class="form-control form-control-sm" placeholder="Scrivi un commento..." required>
+                                    <button type="submit" class="btn btn-sm btn-outline-primary">Invia</button>
+                                </div>
+                            </form>
+                        <?php endif; ?>
+
+                        <?php
+                        $commenti = $conn->query("
+                            SELECT c.*, u.username 
+                            FROM Commento c 
+                            JOIN Utente u ON c.utente_id = u.id 
+                            WHERE c.post_id = {$post['id']} 
+                            ORDER BY c.data_creazione
+                        ");
+                        
+                        if ($commenti->num_rows > 0): ?>
+                            <div class="commenti-list">
+                                <?php while($commento = $commenti->fetch_assoc()): ?>
+                                    <div class="commento mb-2 p-2 bg-light rounded">
+                                        <div class="d-flex justify-content-between">
+                                            <strong class="small"><?= htmlspecialchars($commento['username']) ?></strong>
+                                            <small class="text-muted"><?= date('d/m/Y H:i', strtotime($commento['data_creazione'])) ?></small>
+                                        </div>
+                                        <p class="mb-0 small"><?= htmlspecialchars($commento['testo']) ?></p>
+                                    </div>
+                                <?php endwhile; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    
                     <div class="d-flex justify-content-between align-items-center mt-2">
                         <small class="text-muted">
                             Post di <strong><?= htmlspecialchars($post['username']) ?></strong> 
@@ -103,6 +139,16 @@ if ($result === false) {
         <?php endforeach; ?>
     <?php endif; ?>
 </div>
+
+<style>
+    .commenti-list {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .commento {
+        border-left: 3px solid #dee2e6;
+    }
+</style>
 
 <?php
 include '../includes/footer.php';
