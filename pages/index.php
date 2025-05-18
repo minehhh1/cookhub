@@ -113,7 +113,7 @@ if ($result === false) {
                         if ($commenti->num_rows > 0): ?>
                             <div class="commenti-list">
                                 <?php while($commento = $commenti->fetch_assoc()): ?>
-                                    <div class="commento mb-2 p-2 bg-light rounded">
+                                    <div class="commento mb-2 p-2 rounded">
                                         <div class="d-flex justify-content-between">
                                             <strong class="small"><?= htmlspecialchars($commento['username']) ?></strong>
                                             <small class="text-muted"><?= date('d/m/Y H:i', strtotime($commento['data_creazione'])) ?></small>
@@ -139,16 +139,6 @@ if ($result === false) {
         <?php endforeach; ?>
     <?php endif; ?>
 </div>
-
-<style>
-    .commenti-list {
-        max-height: 200px;
-        overflow-y: auto;
-    }
-    .commento {
-        border-left: 3px solid #dee2e6;
-    }
-</style>
 
 <?php
 include '../includes/footer.php';

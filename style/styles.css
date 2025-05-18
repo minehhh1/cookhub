@@ -1,7 +1,7 @@
 /* Stili globali per CookHub */
 
 :root {
-  --colore-primario: #ff7e5f;
+  --colore-primario: #ff9800;
   --colore-primario-chiaro: #feb47b;
   --colore-nero: #121212;
   --colore-bianco: #ffffff;
@@ -10,6 +10,61 @@
   --colore-grigio-chiaro: #f8f9fa;
   --colore-navbar-light: #f0f0f0;
   --colore-navbar-dark: #1e1e1e;
+  --colore-commento-light: #f1f1f1;
+  --colore-commento-dark: #2a2a2a;
+}
+
+/* === Icona hamburger: corregge visibilità in base al tema === */
+.hamburger-icon-dark {
+  display: inline-block;
+}
+.hamburger-icon-light {
+  display: none;
+}
+body.dark-mode .hamburger-icon-dark {
+  display: none;
+}
+body.dark-mode .hamburger-icon-light {
+  display: inline-block;
+}
+
+/* === Commenti === */
+.commenti-list {
+  margin-top: 1rem;
+}
+
+.commento {
+  background-color: var(--colore-commento-light);
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  color: var(--colore-grigio);
+}
+
+body.dark-mode .commento {
+  background-color: var(--colore-commento-dark);
+  color: var(--colore-bianco);
+}
+
+.commento strong {
+  font-weight: 600;
+  color: var(--colore-primario);
+}
+
+.commento small {
+  color: #666;
+}
+
+body.dark-mode .commento small {
+  color: #ccc;
+}
+
+.commento p {
+  margin: 0.3rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.4;
 }
 
 /* === Stili base === */
@@ -138,6 +193,20 @@ body.dark-mode .navbar-nav .nav-link {
 
 .navbar-nav .nav-link:hover {
   color: var(--colore-primario);
+}
+
+/* Icona hamburger: mostra una in base al tema */
+.hamburger-icon-light {
+  display: inline-block;
+}
+.hamburger-icon-dark {
+  display: none;
+}
+body.dark-mode .hamburger-icon-light {
+  display: none;
+}
+body.dark-mode .hamburger-icon-dark {
+  display: inline-block;
 }
 
 /* === Bottone di cambio tema === */

@@ -9,7 +9,7 @@
    id="svg1"
    inkscape:version="1.4 (86a8ad7, 2024-10-11)"
    sodipodi:docname="CH_logoLungoBlack.svg"
-   inkscape:export-filename="assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\assets\CH_logoLungoBlack.svg"
+   inkscape:export-filename="CH_logoLungoWhite"
    inkscape:export-xdpi="96.004585"
    inkscape:export-ydpi="96.004585"
    inkscape:export-batch-path="assets"
@@ -21,7 +21,7 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
      id="namedview1"
-     pagecolor="#000000"
+     pagecolor="#ffffff"
      bordercolor="#000000"
      borderopacity="0.24705882"
      inkscape:showpageshadow="2"
@@ -169,6 +169,14 @@
        y2="8.8770784"
        gradientUnits="userSpaceOnUse" />
   </defs>
+  <rect
+     style="fill:#020000;fill-opacity:0.963504;stroke-width:0.266076"
+     id="rect1"
+     width="52.421001"
+     height="18.518198"
+     x="0"
+     y="0"
+     ry="2.5999999" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
