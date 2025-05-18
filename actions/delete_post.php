@@ -1,39 +1,47 @@
 <?php
 session_start();
 
-if (!isset($_GET['id'])) {
-    $_SESSION['error'] = "Post non specificato";
-    header('Location: ../pages/index.php');
+// 1. Controlla se l'utente è loggato
+if (!isset($_SESSION['id_utente'])) {
+    header("Location: ../pages/login.php");
     exit;
 }
 
-require_once '../config/config.php';
-
-$post_id = intval($_GET['id']);
-$user_id = $_SESSION['user_id'];
-
-// Verifica che l'utente sia il proprietario del post
-$query = "SELECT id_utente FROM Post WHERE id = $post_id";
-$result = $conn->query($query);
-
-if ($result === false) {
-    $_SESSION['error'] = "Errore nel database: " . $conn->error;
-} elseif ($result->num_rows == 0) {
-    $_SESSION['error'] = "Post non trovato";
-} else {
-    $post = $result->fetch_assoc();
-    if ($post['id_utente'] != $user_id) {
-        $_SESSION['error'] = "Non sei autorizzato a eliminare questo post";
-    } else {
-        $delete_query = "DELETE FROM Post WHERE id = $post_id";
-        if ($conn->query($delete_query)) {
-            $_SESSION['success'] = "Post eliminato con successo";
-        } else {
-            $_SESSION['error'] = "Errore durante l'eliminazione del post: " . $conn->error;
-        }
-    }
+// 2. Controlla se è stato passato l'ID del post
+if (!isset($_GET['id']) || !ctype_digit($_GET['id'])) {
+    header("Location: ../pages/index.php?error=ID non valido");
+    exit;
 }
 
-header('Location: ../pages/index.php');
+// 3. Connessione al database
+require_once '../config/config.php';
+
+// 4. Prendi i dati
+$post_id = intval($_GET['id']);
+$user_id = $_SESSION['id_utente'];
+
+// 5. Eliminazione in transazione per maggiore efficienza
+$conn->begin_transaction();
+
+try {
+    // Prima elimina i like associati (se esiste la tabella)
+    @$conn->query("DELETE FROM Likes WHERE post_id = $post_id");
+    
+    // Poi elimina il post
+    $result = $conn->query("DELETE FROM Post WHERE id = $post_id AND id_utente = $user_id");
+    
+    if ($conn->affected_rows === 0) {
+        throw new Exception("Post non trovato o non hai i permessi");
+    }
+    
+    $conn->commit();
+    header("Location: ../pages/index.php?success=Post eliminato");
+    
+} catch (Exception $e) {
+    $conn->rollback();
+    header("Location: ../pages/index.php?error=" . urlencode($e->getMessage()));
+}
+
+$conn->close();
 exit;
 ?>
