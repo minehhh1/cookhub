@@ -1,27 +1,137 @@
-/* ==================================================
-   Stili globali per CookHub
-================================================== */
-
+/* Stili globali per CookHub */
 :root {
-  --colore-primario: #f08a5d;
-  --colore-primario-chiaro: #feb47b;
-  --colore-nero: #121212;
-  --colore-bianco: #ffffff;
-  --colore-scuro: #1e1e1e;
-  --colore-grigio: #333333;
-  --colore-grigio-chiaro: #f8f9fa;
-  --colore-navbar-light: #f0f0f0;
-  --colore-navbar-dark: #1e1e1e;
-  --colore-commento-light: #f1f1f1;
-  --colore-commento-dark: #2a2a2a;
+--colore-primario: #f08a5d;
+--colore-primario-chiaro: #feb47b;
+--colore-nero: #121212;
+--colore-bianco: #ffffff;
+--colore-scuro: #1e1e1e;
+--colore-grigio: #333333;
+--colore-grigio-chiaro: #f8f9fa;
+--colore-navbar-light: #f0f0f0;
+--colore-navbar-dark: #1e1e1e;
+--colore-commento-light: #f1f1f1;
+--colore-commento-dark: #2a2a2a;
 }
 
-/* ==================================================
-   Tema scuro: override generali
-================================================== */
+/* === Icone dinamiche per tema === */
+.hamburger-icon-light,
+.profile-icon-light {
+display: none;
+}
+.hamburger-icon-dark,
+.profile-icon-dark {
+display: inline-block;
+}
+body.dark-mode .hamburger-icon-light,
+body.dark-mode .profile-icon-light {
+display: inline-block;
+}
+body.dark-mode .hamburger-icon-dark,
+body.dark-mode .profile-icon-dark {
+display: none;
+}
+
+/* === Commenti (NUOVA SEZIONE AGGIUNTA) === */
+.commenti-list {
+margin-top: 1rem;
+}
+
+.commento {
+background-color: var(--colore-commento-light);
+padding: 0.75rem 1rem;
+border-radius: 10px;
+font-size: 0.9rem;
+transition: background-color 0.3s;
+box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+color: var(--colore-grigio);
+}
+
+body.dark-mode .commento {
+background-color: var(--colore-commento-dark);
+color: var(--colore-bianco);
+}
+
+.commento strong {
+font-weight: 600;
+color: var(--colore-primario);
+}
+
+.commento small {
+color: #666;
+}
+
+body.dark-mode .commento small {
+color: #ccc;
+}
+
+.commento p {
+margin: 0.3rem 0 0;
+font-size: 0.85rem;
+line-height: 1.4;
+}
+
+/* === Stili per i link utente (NUOVA SEZIONE AGGIUNTA) === */
+.user-link {
+color: var(--colore-primario) !important;
+transition: all 0.3s ease;
+position: relative;
+display: inline-flex;
+align-items: center;
+gap: 0.3rem;
+}
+
+.user-link:hover {
+color: var(--colore-primario-chiaro) !important;
+transform: translateY(-1px);
+}
+
+.user-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -2px;
+left: 0;
+background-color: var(--colore-primario);
+transition: width 0.3s ease;
+}
+
+.user-link:hover::after {
+width: 100%;
+}
+
+.user-username {
+font-weight: 600;
+font-size: 0.9em;
+letter-spacing: 0.5px;
+}
+
+/* Dark mode per link utente */
+body.dark-mode .user-link {
+color: var(--colore-primario-chiaro) !important;
+}
+
+body.dark-mode .user-link:hover {
+color: var(--colore-primario) !important;
+}
+
+body.dark-mode .user-link::after {
+background-color: var(--colore-primario-chiaro);
+}
+
+/* === Stili base preesistenti === */
+body {
+font-family: 'Nunito', sans-serif;
+background-color: var(--colore-grigio-chiaro);
+color: var(--colore-grigio);
+margin: 0;
+padding: 0;
+transition: background-color 0.3s, color 0.3s;
+}
+
 body.dark-mode {
-  background-color: var(--colore-nero);
-  color: var(--colore-bianco);
+background-color: var(--colore-nero);
+color: var(--colore-bianco);
 }
 
 body.dark-mode a,
@@ -35,7 +145,7 @@ body.dark-mode .btn-close,
 body.dark-mode .dropdown-menu,
 body.dark-mode .alert,
 body.dark-mode small.text-muted {
-  color: var(--colore-bianco) !important;
+color: var(--colore-bianco) !important;
 }
 
 body.dark-mode .modal-content,
@@ -43,404 +153,291 @@ body.dark-mode .modal-header,
 body.dark-mode .modal-body,
 body.dark-mode .form-control,
 body.dark-mode .alert {
-  background-color: var(--colore-scuro) !important;
-  border-color: #444 !important;
+background-color: var(--colore-scuro) !important;
+border-color: #444 !important;
 }
 
 body.dark-mode .form-control::placeholder {
-  color: #ccc;
+color: #ccc;
 }
 
 body.dark-mode .btn-close {
-  filter: invert(1);
-  opacity: 0.7;
+filter: invert(1);
+opacity: 0.7;
 }
 
 body.dark-mode .btn-close:hover {
-  opacity: 1;
-}
-
-/* ==================================================
-   Base
-================================================== */
-body {
-  font-family: 'Nunito', sans-serif;
-  background-color: var(--colore-grigio-chiaro);
-  color: var(--colore-grigio);
-  margin: 0;
-  padding: 0;
-  transition: background-color 0.3s, color 0.3s;
+opacity: 1;
 }
 
 a,
 button {
-  cursor: pointer;
+cursor: pointer;
 }
 
+/* === Logo in base al tema === */
+.navbar-brand .logo-light {
+display: inline-block;
+}
+.navbar-brand .logo-dark {
+display: none;
+}
+body.dark-mode .navbar-brand .logo-light {
+display: none;
+}
+body.dark-mode .navbar-brand .logo-dark {
+display: inline-block;
+}
+
+/* === Impostazioni container === */
 .container {
-  max-width: 1140px;
-  padding-left: 1rem;
-  padding-right: 1rem;
+max-width: 1140px;
+padding-left: 1rem;
+padding-right: 1rem;
 }
 
-/* ==================================================
-   Navbar
-================================================== */
+/* === Navbar === */
 .navbar {
-  background-color: var(--colore-navbar-light);
-  color: var(--colore-grigio);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  white-space: nowrap;
-  overflow-x: auto;
-  transition: background-color 0.3s;
+background-color: var(--colore-navbar-light);
+color: var(--colore-grigio);
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+white-space: nowrap;
+overflow-x: auto;
+transition: background-color 0.3s;
 }
 
 body.dark-mode .navbar {
-  background-color: var(--colore-navbar-dark);
-  color: var(--colore-bianco);
+background-color: var(--colore-navbar-dark);
+color: var(--colore-bianco);
 }
 
 .navbar .container-fluid {
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  align-items: center;
+flex-wrap: nowrap;
+overflow-x: auto;
+align-items: center;
 }
 
 .navbar-brand img {
-  max-height: 40px;
+max-height: 40px;
 }
 
 .navbar-nav {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: nowrap;
+flex-direction: row;
+align-items: center;
+gap: 0.5rem;
+flex-wrap: nowrap;
 }
 
 .navbar-nav .nav-item {
-  white-space: nowrap;
+white-space: nowrap;
 }
 
 .navbar-nav .nav-link {
-  font-weight: 600;
-  margin-left: 1rem;
-  transition: color 0.3s ease;
-  color: var(--colore-grigio);
+font-weight: 600;
+margin-left: 1rem;
+transition: color 0.3s ease;
+color: var(--colore-grigio);
 }
 
 body.dark-mode .navbar-nav .nav-link {
-  color: var(--colore-bianco);
+color: var(--colore-bianco);
 }
 
 .navbar-nav .nav-link:hover {
-  color: var(--colore-primario);
+color: var(--colore-primario);
 }
 
-/* Icone dinamiche per tema */
-.hamburger-icon-light,
-.profile-icon-light {
-  display: none;
+/* Icona hamburger: mostra una in base al tema */
+.hamburger-icon-light {
+display: inline-block;
 }
-.hamburger-icon-dark,
-.profile-icon-dark {
-  display: inline-block;
+.hamburger-icon-dark {
+display: none;
 }
-body.dark-mode .hamburger-icon-light,
-body.dark-mode .profile-icon-light {
-  display: inline-block;
+body.dark-mode .hamburger-icon-light {
+display: none;
 }
-body.dark-mode .hamburger-icon-dark,
-body.dark-mode .profile-icon-dark {
-  display: none;
+body.dark-mode .hamburger-icon-dark {
+display: inline-block;
 }
 
-/* Rimozione freccia dal dropdown */
-.navbar .dropdown-toggle::after {
-  display: none;
-}
-
-/* ==================================================
-   Bottone tema
-================================================== */
+/* === Bottone di cambio tema === */
 #themeToggle {
-  border: none;
-  background-color: transparent;
-  padding: 0.4rem 0.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  transition: background-color 0.3s;
+border: none;
+background-color: transparent;
+padding: 0.4rem 0.6rem;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 8px;
+transition: background-color 0.3s;
 }
 
 #themeToggle:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+background-color: rgba(0, 0, 0, 0.05);
 }
 
 #themeToggle i {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-  color: var(--colore-grigio);
+font-size: 1.2rem;
+transition: transform 0.3s ease;
+color: var(--colore-grigio);
 }
 
 body.dark-mode #themeToggle i {
-  color: var(--colore-bianco);
+color: var(--colore-bianco);
 }
 
-/* ==================================================
-   Offcanvas menu
-================================================== */
+/* === Menu offcanvas === */
 .offcanvas {
-  width: 250px;
-  background-color: var(--colore-navbar-light);
-  color: var(--colore-grigio);
-  transition: background-color 0.3s;
+width: 250px;
+background-color: var(--colore-navbar-light);
+color: var(--colore-grigio);
+transition: background-color 0.3s;
 }
-
 body.dark-mode .offcanvas {
-  background-color: var(--colore-navbar-dark);
-  color: var(--colore-bianco);
+background-color: var(--colore-navbar-dark);
+color: var(--colore-bianco);
 }
-
 .offcanvas-header {
-  border-bottom: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
 }
-
 .offcanvas-body .nav-link {
-  padding: 0.5rem 1rem;
-  color: var(--colore-grigio);
-  transition: background 0.2s;
+padding: 0.5rem 1rem;
+color: var(--colore-grigio);
+transition: background 0.2s;
 }
-
 body.dark-mode .offcanvas-body .nav-link {
-  color: var(--colore-bianco);
+color: var(--colore-bianco);
 }
-
 .offcanvas-body .nav-link:hover {
-  background-color: rgba(0,0,0,0.05);
+background-color: rgba(0,0,0,0.05);
 }
 
-/* ==================================================
-   Commenti
-================================================== */
-.commenti-list {
-  margin-top: 1rem;
-}
-
-.commento {
-  background-color: var(--colore-commento-light);
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  transition: background-color 0.3s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  color: var(--colore-grigio);
-}
-
-body.dark-mode .commento {
-  background-color: var(--colore-commento-dark);
-  color: var(--colore-bianco);
-}
-
-.commento strong {
-  font-weight: 600;
-  color: var(--colore-primario);
-}
-
-.commento small {
-  color: #666;
-}
-
-body.dark-mode .commento small {
-  color: #ccc;
-}
-
-.commento p {
-  margin: 0.3rem 0 0;
-  font-size: 0.85rem;
-  line-height: 1.4;
-}
-
-/* ==================================================
-   Link utente
-================================================== */
-.user-link {
-  color: var(--colore-primario) !important;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.user-link:hover {
-  color: var(--colore-primario-chiaro) !important;
-  transform: translateY(-1px);
-}
-
-.user-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: var(--colore-primario);
-  transition: width 0.3s ease;
-}
-
-.user-link:hover::after {
-  width: 100%;
-}
-
-.user-username {
-  font-weight: 600;
-  font-size: 0.9em;
-  letter-spacing: 0.5px;
-}
-
-body.dark-mode .user-link {
-  color: var(--colore-primario-chiaro) !important;
-}
-
-body.dark-mode .user-link:hover {
-  color: var(--colore-primario) !important;
-}
-
-body.dark-mode .user-link::after {
-  background-color: var(--colore-primario-chiaro);
-}
-
-/* ==================================================
-   Bottoni
-================================================== */
+/* === Bottoni === */
 .btn-primary {
-  background: linear-gradient(135deg, var(--colore-primario), var(--colore-primario-chiaro));
-  border: none;
-  transition: background 0.3s ease-in-out;
-  color: var(--colore-bianco);
+background: linear-gradient(135deg, var(--colore-primario), var(--colore-primario-chiaro));
+border: none;
+transition: background 0.3s ease-in-out;
+color: var(--colore-bianco);
 }
-
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--colore-primario-chiaro), var(--colore-primario));
+background: linear-gradient(135deg, var(--colore-primario-chiaro), var(--colore-primario));
 }
-
 .btn-outline-danger {
-  border-color: var(--colore-primario);
-  color: var(--colore-primario);
-  transition: background 0.2s, color 0.2s;
+border-color: var(--colore-primario);
+color: var(--colore-primario);
+transition: background 0.2s, color 0.2s;
 }
-
 .btn-outline-danger:hover {
-  background-color: var(--colore-primario);
-  color: var(--colore-bianco);
+background-color: var(--colore-primario);
+color: var(--colore-bianco);
 }
 
-/* ==================================================
-   Card e post
-================================================== */
+/* === Card e post === */
 .card {
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  transition: transform 0.2s;
+border: none;
+border-radius: 12px;
+box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+transition: transform 0.2s;
 }
-
 .card:hover {
-  transform: translateY(-3px);
+transform: translateY(-3px);
 }
-
 .card-title {
-  font-weight: 700;
-  margin-bottom: 1rem;
+font-weight: 700;
+margin-bottom: 1rem;
 }
-
 .card-text {
-  line-height: 1.6;
+line-height: 1.6;
 }
 
 .card.dark-mode {
-  background-color: #222;
-  color: #ddd;
+background-color: #222;
+color: #ddd;
 }
 
-/* ==================================================
-   Modali
-================================================== */
+/* === Form === */
+.form-control {
+border-radius: 8px;
+padding: 0.75rem 1rem;
+transition: border-color 0.2s;
+}
+.form-control:focus {
+border-color: var(--colore-primario);
+box-shadow: none;
+}
+
+/* === Modali === */
 .modal-content {
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  animation: slideIn 0.3s ease-out;
+border-radius: 12px;
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+animation: slideIn 0.3s ease-out;
 }
-
 @keyframes slideIn {
-  from {
-    transform: translateY(20%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+from {
+transform: translateY(20%);
+opacity: 0;
 }
-
+to {
+transform: translateY(0);
+opacity: 1;
+}
+}
 .modal-header {
-  background-color: var(--colore-grigio-chiaro);
-  border-bottom: 1px solid #dee2e6;
-  padding: 1rem 1.25rem;
+background-color: var(--colore-grigio-chiaro);
+border-bottom: 1px solid #dee2e6;
+padding: 1rem 1.25rem;
 }
-
 .modal-header .btn-close {
-  font-size: 1.5rem;
-  opacity: 0.7;
-  transition: opacity 0.2s;
+font-size: 1.5rem;
+opacity: 0.7;
+transition: opacity 0.2s;
 }
-
 .modal-header .btn-close:hover {
-  opacity: 1;
-  color: var(--colore-primario);
+opacity: 1;
+color: var(--colore-primario);
 }
 
-/* ==================================================
-   Alert & Footer
-================================================== */
+/* === Avvisi (alert) === */
 .alert {
-  border-radius: 8px;
+border-radius: 8px;
 }
 
+/* === Footer === */
 footer {
-  background-color: var(--colore-grigio-chiaro);
-  color: var(--colore-grigio);
-  padding: 1.5rem 0;
-  font-size: 0.9rem;
+background-color: var(--colore-grigio-chiaro);
+color: var(--colore-grigio);
+padding: 1.5rem 0;
+font-size: 0.9rem;
 }
 
 footer.dark-mode {
-  background-color: var(--colore-scuro);
-  color: var(--colore-bianco);
+background-color: var(--colore-scuro);
+color: var(--colore-bianco);
 }
 
-/* ==================================================
-   Utility
-================================================== */
+/* === Classi di utilità === */
 .text-center {
-  text-align: center;
+text-align: center;
 }
-
 .mt-5 {
-  margin-top: 3rem !important;
+margin-top: 3rem !important;
 }
-
 .mb-4 {
-  margin-bottom: 1.5rem !important;
+margin-bottom: 1.5rem !important;
 }
 
-/* Effetto sfocato login/register */
-.glass-effect {
-  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-  -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 32px;
+/* === Rimozione freccia dal dropdown === */
+.navbar .dropdown-toggle::after {
+display: none;
+}
+
+/* Effetto di sfocatura per il login e register*/
+.glass-effect{
+background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+-webkit-backdrop-filter: blur(15px);
+backdrop-filter: blur(15px);
+box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+border: 1px solid rgba(255, 255, 255, 0.18);
+border-radius: 32px;
 }
