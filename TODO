@@ -1,4 +1,6 @@
 ---FrontEnd---
     Sistemare i bottoni sulla navbar quando si ridimensiona la pagina
-    Tema scuro e chiaro non si applica anche alla navbar e al footer e modal
+    Tema scuro e chiaro non si applicano anche a navbar, footer e modal #
+    Nome utente di chi ha postato il post da abbellire
+    Fixare il bottone del profilo che ha smesso di funzionare boooh
 ---BackEnd---
