@@ -14,18 +14,22 @@
   --colore-commento-dark: #2a2a2a;
 }
 
-/* === Icona hamburger: corregge visibilità in base al tema === */
-.hamburger-icon-dark {
-  display: inline-block;
-}
-.hamburger-icon-light {
+/* === Icone dinamiche per tema === */
+.hamburger-icon-light,
+.profile-icon-light {
   display: none;
 }
-body.dark-mode .hamburger-icon-dark {
-  display: none;
-}
-body.dark-mode .hamburger-icon-light {
+.hamburger-icon-dark,
+.profile-icon-dark {
   display: inline-block;
+}
+body.dark-mode .hamburger-icon-light,
+body.dark-mode .profile-icon-light {
+  display: inline-block;
+}
+body.dark-mode .hamburger-icon-dark,
+body.dark-mode .profile-icon-dark {
+  display: none;
 }
 
 /* === Commenti === */

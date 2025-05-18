@@ -14,6 +14,10 @@ if (session_status() === PHP_SESSION_NONE) {
     </button>
 
     <!-- Logo -->
+    <a class="navbar-brand" href="index.php">
+      <img src="../assets/cookhub.png" alt="Logo chiaro" class="logo-light d-inline-block align-text-top">
+      <img src="../assets/cookhub.png" alt="Logo scuro" class="logo-dark d-none align-text-top">
+    </a>
 
     <!-- Navbar principale -->
     <div class="collapse navbar-collapse justify-content-end">
@@ -21,8 +25,8 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php if (isset($_SESSION['id_utente'])) { ?>
           <li class="nav-item d-flex align-items-center me-2">
             <a href="../pages/profile.php" class="nav-link p-0">
-              <img width="26" height="26" src="https://img.icons8.com/ios-filled/50/FFFFFF/chef-hat.png" alt="chef-hat"/>
-              <img width="26" height="26" src="https://img.icons8.com/ios-filled/50/chef-hat.png" alt="chef-hat"/>
+              <img src="https://img.icons8.com/ios-filled/50/FFFFFF/chef-hat.png" alt="Profilo" width="26" height="26" class="profile-icon-light">
+              <img src="https://img.icons8.com/ios-filled/50/chef-hat.png" alt="Profilo" width="26" height="26" class="profile-icon-dark">
             </a>
           </li>
           <li class="nav-item">
