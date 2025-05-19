@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- Logo -->
     <a class="navbar-brand" href="index.php">
-      <img src="../assets/cookhub.svg" alt="Logo" class="d-inline-block align-text-top">
+      <img src="../assets/cookhub.png" alt="Logo" class="d-inline-block align-text-top">
     </a>
 
     <!-- Navbar principale -->
@@ -58,7 +58,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <div class="offcanvas-body">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="../pages/popolari.php">Popolari</a>
+        <a class="nav-link" href="../pages/popular_posts.php">Popolari</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../pages/ricette.php">Ricette</a>
