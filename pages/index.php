@@ -102,20 +102,21 @@ if ($result === false) {
                         <?php endif; ?>
 
                         <?php
-                            $commenti = $conn->query("
-                                SELECT c.*, u.username 
-                                FROM Commento c 
-                                JOIN Utente u ON c.utente_id = u.id 
-                                WHERE c.post_id = {$post['id']} 
-                                ORDER BY c.data_creazione
-                            ");                  
-                            if ($commenti->num_rows > 0): ?>
-                                <div class="commenti-list">
-                                    <?php while($commento = $commenti->fetch_assoc()): ?>
+                        $commenti = $conn->query("
+                            SELECT c.*, u.username 
+                            FROM Commento c 
+                            JOIN Utente u ON c.utente_id = u.id 
+                            WHERE c.post_id = {$post['id']} 
+                            ORDER BY c.data_creazione
+                        ");
+                        
+                        if ($commenti->num_rows > 0): ?>
+                            <div class="commenti-list">
+                                <?php while($commento = $commenti->fetch_assoc()): ?>
                                     <div class="commento mb-2 p-2 rounded">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <a href="../pages/profile.php?id=<?= $commento['utente_id'] ?>" class="user-link text-decoration-none">
-                                                <span class="user-username"><?= htmlspecialchars($commento['username']) ?></span>
+                                            <a href="../pages/profile.php?id=<?= $commento['utente_id'] ?>" class="text-decoration-none">
+                                                <strong><?= htmlspecialchars($commento['username']) ?></strong>
                                             </a>
                                             <small class="text-muted"><?= date('d/m/Y H:i', strtotime($commento['data_creazione'])) ?></small>
                                         </div>
@@ -129,13 +130,16 @@ if ($result === false) {
                     <div class="d-flex justify-content-between align-items-center mt-2">
                         <small class="text-muted">
                             Post di 
-                            <a href="../pages/profile.php?id=<?= $post['id_utente'] ?>" class="text-decoration-none"> <!-- Aggiunto ../ -->
+                            <a href="../pages/profile.php?id=<?= $post['id_utente'] ?>" class="text-decoration-none">
                                 <strong class="text-primary"><?= htmlspecialchars($post['username']) ?></strong>
                             </a> 
                             il <?= date('d/m/Y', strtotime($post['data_creazione'])) ?>
                         </small>
                         <?php if (isset($_SESSION['id_utente']) && $_SESSION['id_utente'] == $post['id_utente']): ?>
-                            <a href="../actions/delete_post.php?id=<?= $post['id'] ?>" class="btn btn-sm btn-outline-danger">Elimina</a>
+                            <form action="../actions/delete_post.php" method="POST" class="d-inline">
+                                <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Elimina</button>
+                            </form>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -143,6 +147,20 @@ if ($result === false) {
         <?php endforeach; ?>
     <?php endif; ?>
 </div>
+
+<style>
+    .commenti-list {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .commento {
+        background-color: #f8f9fa;
+        border-left: 3px solid #dee2e6;
+    }
+    .text-decoration-none:hover {
+        text-decoration: underline !important;
+    }
+</style>
 
 <?php
 include '../includes/footer.php';
