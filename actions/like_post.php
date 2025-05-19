@@ -3,8 +3,8 @@ session_start();
 require_once '../config/config.php';
 
 if (!isset($_SESSION['id_utente'])) {
-    header("Location: ../login.php");
-    exit();
+    header("Location: ../pages/login.php");
+    exit;
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['post_id'])) {

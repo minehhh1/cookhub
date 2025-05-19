@@ -2,26 +2,33 @@
 session_start();
 require_once '../config/config.php';
 
+// 1. Controllo login
 if (!isset($_SESSION['id_utente'])) {
     header("Location: ../pages/login.php");
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'])) {
-    $post_id = intval($_POST['post_id']);
-    $user_id = $_SESSION['id_utente'];
-
-    // Elimina prima i commenti associati
-    $conn->query("DELETE FROM Commento WHERE post_id = $post_id");
-    
-    // Poi elimina il post
-    if ($conn->query("DELETE FROM Post WHERE id = $post_id AND id_utente = $user_id")) {
-        header("Location: ../pages/index.php?success=Post eliminato");
-    } else {
-        header("Location: ../pages/index.php?error=Errore durante l'eliminazione");
-    }
+// 2. Controllo dati inviati
+if (!isset($_POST['post_id'])) {
+    header("Location: ../pages/index.php");
     exit;
 }
 
+// 3. Prendi i dati
+$post_id = (int)$_POST['post_id'];
+$user_id = (int)$_SESSION['id_utente'];
+
+// 4. Elimina prima i commenti e like
+$conn->query("DELETE FROM Commento WHERE post_id = $post_id");
+$conn->query("DELETE FROM Likes WHERE post_id = $post_id");
+
+// 5. Elimina il post solo se è dell'utente
+if ($conn->query("DELETE FROM Post WHERE id = $post_id AND id_utente = $user_id")) {
+    $_SESSION['success'] = "Post eliminato!";
+} else {
+    $_SESSION['error'] = "Errore nell'eliminazione";
+}
+
 header("Location: ../pages/index.php");
+exit;
 ?>

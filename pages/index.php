@@ -4,18 +4,16 @@ $pageTitle = "Home";
 $activePage = "home";
 
 include '../includes/header.php';
-require_once '../config/config.php'; // Connessione al DB
+require_once '../config/config.php';
 
 // Mostra messaggio di benvenuto
 if (isset($_SESSION['welcome'])) {
-    ?>
-    <div class="container mt-3">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?= $_SESSION['welcome'] ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-    <?php
+    echo '<div class="container mt-3">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                '.htmlspecialchars($_SESSION['welcome']).'
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>';
     unset($_SESSION['welcome']);
 }
 
@@ -31,11 +29,13 @@ $query = "SELECT Post.*, Utente.username,
 $result = $conn->query($query);
 
 if ($result === false) {
-    echo "<div class='container mt-3'><div class='alert alert-danger'>Errore nel caricamento dei post: " . $conn->error . "</div></div>";
+    echo "<div class='container mt-3'><div class='alert alert-danger'>Errore nel caricamento dei post: " . htmlspecialchars($conn->error) . "</div></div>";
 } elseif ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-        // Verifica se l'utente corrente ha messo like
-        if (isset($_SESSION['id_utente'])) {
+        $row['user_liked'] = false; // Default
+        
+        // Verifica like solo se l'utente è loggato
+        if (isset($_SESSION['id_utente']) && !empty($_SESSION['id_utente'])) {
             $check_like = $conn->prepare("SELECT id FROM Likes WHERE post_id = ? AND user_id = ?");
             $check_like->bind_param("ii", $row['id'], $_SESSION['id_utente']);
             $check_like->execute();
@@ -81,13 +81,20 @@ if ($result === false) {
                     
                     <!-- Sezione Like -->
                     <div class="like-section mt-3">
-                        <form action="../actions/like_post.php" method="post" class="d-inline">
-                            <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                            <button type="submit" class="like-button">
-                                <i class="fas fa-heart <?= $post['user_liked'] ? 'liked' : '' ?>"></i>
-                                <span><?= $post['like_count'] ?></span>
-                            </button>
-                        </form>
+                        <?php if (isset($_SESSION['id_utente'])): ?>
+                            <form action="../actions/like_post.php" method="post" class="d-inline">
+                                <input type="hidden" name="post_id" value="<?= htmlspecialchars($post['id']) ?>">
+                                <button type="submit" class="like-button btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-heart <?= $post['user_liked'] ? 'text-danger' : '' ?>"></i>
+                                    <span><?= htmlspecialchars($post['like_count']) ?></span>
+                                </button>
+                            </form>
+                        <?php else: ?>
+                            <span class="like-count">
+                                <i class="fas fa-heart text-muted"></i>
+                                <span><?= htmlspecialchars($post['like_count']) ?></span>
+                            </span>
+                        <?php endif; ?>
                     </div>
                     
                     <!-- Sezione Commenti -->
