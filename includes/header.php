@@ -13,6 +13,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
   <!-- CSS -->
   <link rel="stylesheet" href="../style/styles.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    .like-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        font-size: 1.1rem;
+    }
+    
+    .fa-heart {
+        color: #ccc; /* Grigio chiaro */
+        transition: all 0.3s;
+    }
+    
+    .fa-heart.liked {
+        color: #ff6b35; /* Arancione */
+    }
+    
+    .fa-heart:hover {
+        transform: scale(1.2);
+    }
+    
+    .like-button span {
+        margin-left: 5px;
+        font-size: 0.9rem;
+    }
+</style>
+
 </head>
 <body style="font-family: 'Nunito', sans-serif;">
   <?php include '../includes/navbar.php'; ?>

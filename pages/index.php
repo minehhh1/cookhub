@@ -83,8 +83,9 @@ if ($result === false) {
                     <div class="like-section mt-3">
                         <form action="../actions/like_post.php" method="post" class="d-inline">
                             <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                            <button type="submit" class="btn btn-sm <?= isset($post['user_liked']) && $post['user_liked'] ? 'btn-danger' : 'btn-outline-danger' ?>">
-                                <i class="fas fa-heart"></i> <?= $post['like_count'] ?>
+                            <button type="submit" class="like-button">
+                                <i class="fas fa-heart <?= $post['user_liked'] ? 'liked' : '' ?>"></i>
+                                <span><?= $post['like_count'] ?></span>
                             </button>
                         </form>
                     </div>
@@ -148,19 +149,7 @@ if ($result === false) {
     <?php endif; ?>
 </div>
 
-<style>
-    .commenti-list {
-        max-height: 200px;
-        overflow-y: auto;
-    }
-    .commento {
-        background-color: #f8f9fa;
-        border-left: 3px solid #dee2e6;
-    }
-    .text-decoration-none:hover {
-        text-decoration: underline !important;
-    }
-</style>
+
 
 <?php
 include '../includes/footer.php';
