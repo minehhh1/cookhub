@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) {
       <ul class="navbar-nav">
         <?php if (isset($_SESSION['id_utente'])) { ?>
           <li class="nav-item d-flex align-items-center me-2">
-            <a href="../pages/profile.php" class="nav-link p-0">
+            <a href="../pages/profile.php?id=<?= $_SESSION['id_utente'] ?>" class="nav-link p-0">
               <img src="https://img.icons8.com/ios-filled/50/FFFFFF/chef-hat.png" alt="Profilo" width="26" height="26" class="profile-icon-light">
               <img src="https://img.icons8.com/ios-filled/50/chef-hat.png" alt="Profilo" width="26" height="26" class="profile-icon-dark">
             </a>
