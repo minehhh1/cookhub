@@ -15,8 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <!-- Logo -->
     <a class="navbar-brand" href="index.php">
-      <img src="../assets/cookhub.png" alt="Logo chiaro" class="logo-light d-inline-block align-text-top">
-      <img src="../assets/cookhub.png" alt="Logo scuro" class="logo-dark d-none align-text-top">
+      <img src="../assets/cookhub.svg" alt="Logo" class="d-inline-block align-text-top">
     </a>
 
     <!-- Navbar principale -->

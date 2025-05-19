@@ -102,23 +102,24 @@ if ($result === false) {
                         <?php endif; ?>
 
                         <?php
-                        $commenti = $conn->query("
-                            SELECT c.*, u.username 
-                            FROM Commento c 
-                            JOIN Utente u ON c.utente_id = u.id 
-                            WHERE c.post_id = {$post['id']} 
-                            ORDER BY c.data_creazione
-                        ");
-                        
-                        if ($commenti->num_rows > 0): ?>
-                            <div class="commenti-list">
-                                <?php while($commento = $commenti->fetch_assoc()): ?>
+                            $commenti = $conn->query("
+                                SELECT c.*, u.username 
+                                FROM Commento c 
+                                JOIN Utente u ON c.utente_id = u.id 
+                                WHERE c.post_id = {$post['id']} 
+                                ORDER BY c.data_creazione
+                            ");                  
+                            if ($commenti->num_rows > 0): ?>
+                                <div class="commenti-list">
+                                    <?php while($commento = $commenti->fetch_assoc()): ?>
                                     <div class="commento mb-2 p-2 rounded">
-                                        <div class="d-flex justify-content-between">
-                                            <strong class="small"><?= htmlspecialchars($commento['username']) ?></strong>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a href="../pages/profile.php?id=<?= $commento['utente_id'] ?>" class="user-link text-decoration-none">
+                                                <span class="user-username"><?= htmlspecialchars($commento['username']) ?></span>
+                                            </a>
                                             <small class="text-muted"><?= date('d/m/Y H:i', strtotime($commento['data_creazione'])) ?></small>
                                         </div>
-                                        <p class="mb-0 small"><?= htmlspecialchars($commento['testo']) ?></p>
+                                        <p class="mb-0 small mt-1"><?= htmlspecialchars($commento['testo']) ?></p>
                                     </div>
                                 <?php endwhile; ?>
                             </div>
@@ -127,7 +128,10 @@ if ($result === false) {
                     
                     <div class="d-flex justify-content-between align-items-center mt-2">
                         <small class="text-muted">
-                            Post di <strong><?= htmlspecialchars($post['username']) ?></strong> 
+                            Post di 
+                            <a href="../pages/profile.php?id=<?= $post['id_utente'] ?>" class="text-decoration-none"> <!-- Aggiunto ../ -->
+                                <strong class="text-primary"><?= htmlspecialchars($post['username']) ?></strong>
+                            </a> 
                             il <?= date('d/m/Y', strtotime($post['data_creazione'])) ?>
                         </small>
                         <?php if (isset($_SESSION['id_utente']) && $_SESSION['id_utente'] == $post['id_utente']): ?>

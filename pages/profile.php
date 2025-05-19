@@ -1,23 +1,22 @@
 <?php
 session_start();
-require_once '../config/config.php'; // Connessione DB
+require_once '../config/config.php';
 
-// Reindirizza se l'utente non è loggato
-if (!isset($_SESSION['id_utente'])) {
+// Ottieni l'ID utente dall'URL
+$id_utente_selezionato = $_GET['id'] ?? null;
+
+if (!$id_utente_selezionato) {
     header("Location: ../pages/index.php");
     exit;
 }
 
-$id_utente = $_SESSION['id_utente'];
-
-// Recupera i dati dell'utente loggato
+// Recupera i dati dell'utente selezionato
 $sql = "SELECT id, username, email, data_registrazione FROM Utente WHERE id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_utente);
+$stmt->bind_param("i", $id_utente_selezionato); // Usa l'ID dall'URL
 $stmt->execute();
 $result = $stmt->get_result();
 
-// Se non trovato, reindirizza
 if ($result->num_rows !== 1) {
     header("Location: ../pages/index.php");
     exit;
