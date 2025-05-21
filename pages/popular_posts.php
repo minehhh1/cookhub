@@ -69,15 +69,25 @@ if ($result === false) {
                         <div class="like-section mt-3 d-flex align-items-center">
                             <form action="../actions/like_post.php" method="post" class="d-inline me-2">
                                 <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                                <button type="submit" class="btn btn-sm <?= isset($post['user_liked']) && $post['user_liked'] ? 'btn-danger' : 'btn-outline-danger' ?>">
-                                    <i class="fas fa-heart"></i> <?= $post['like_count'] ?>
+                                <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent like-btn">
+                                    <i class="fa-heart fa<?= isset($post['user_liked']) && $post['user_liked'] ? 's liked text-danger' : 'r text-muted' ?>"></i>
+                                    <span class="ms-1"><?= $post['like_count'] ?></span>
                                 </button>
                             </form>
                             <?php if ($post['like_count'] > 5): ?>
                                 <span class="badge bg-warning text-dark">
-                                    <i class="fas fa-fire"></i> Popolare
+                                    <i class="fa-fire"></i> Popolare
                                 </span>
                             <?php endif; ?>
+                            <!-- Commenti -->
+                            <span class="ms-3 text-muted">
+                                <i class="far fa-comment"></i> 
+                                <?php
+                                $commenti_count = $conn->query("SELECT COUNT(*) as c FROM Commento WHERE post_id = {$post['id']}");
+                                $c = $commenti_count ? $commenti_count->fetch_assoc()['c'] : 0;
+                                echo $c;
+                                ?>
+                            </span>
                         </div>
                         
                         <!-- Sezione Commenti -->
@@ -106,7 +116,7 @@ if ($result === false) {
                                     <?php while($commento = $commenti->fetch_assoc()): ?>
                                         <div class="commento mb-2 p-2 rounded">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="../pages/profile.php?id=<?= $commento['utente_id'] ?>" class="text-decoration-none">
+                                                <a href="../pages/profile.php?id=<?= $commento['utente_id'] ?>" class="text-decoration-none user-link">
                                                     <strong><?= htmlspecialchars($commento['username']) ?></strong>
                                                 </a>
                                                 <small class="text-muted"><?= date('d/m/Y H:i', strtotime($commento['data_creazione'])) ?></small>
@@ -121,8 +131,8 @@ if ($result === false) {
                         <div class="d-flex justify-content-between align-items-center mt-2">
                             <small class="text-muted">
                                 Post di 
-                                <a href="../pages/profile.php?id=<?= $post['id_utente'] ?>" class="text-decoration-none">
-                                    <strong class="text-primary"><?= htmlspecialchars($post['username']) ?></strong>
+                                <a href="../pages/profile.php?id=<?= $post['id_utente'] ?>" class="text-decoration-none user-link">
+                                    <strong><?= htmlspecialchars($post['username']) ?></strong>
                                 </a> 
                                 il <?= date('d/m/Y H:i', strtotime($post['data_creazione'])) ?>
                             </small>

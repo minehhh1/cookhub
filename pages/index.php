@@ -126,19 +126,19 @@ if ($result === false) {
                                             <form action="../actions/like_post.php" method="post" class="d-inline">
                                                 <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
                                                 <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent like-btn">
-                                                    <i class="bi <?= $post['user_liked'] ? 'bi-heart-fill text-danger' : 'bi-heart text-muted' ?>"></i>
+                                                    <i class="fa-heart fa<?= $post['user_liked'] ? 's liked text-danger' : 'r text-muted' ?>"></i>
                                                     <span class="ms-1"><?= $post['like_count'] ?></span>
                                                 </button>
                                             </form>
                                         <?php else: ?>
                                             <span class="text-muted">
-                                                <i class="bi bi-heart"></i> <?= $post['like_count'] ?>
+                                                <i class="far fa-heart"></i> <?= $post['like_count'] ?>
                                             </span>
                                         <?php endif; ?>
                                         
                                         <!-- Commenti -->
                                         <span class="text-muted">
-                                            <i class="bi bi-chat-left"></i> <?= $post['comment_count'] ?>
+                                            <i class="far fa-comment"></i> <?= $post['comment_count'] ?>
                                         </span>
                                     </div>
                                 </div>

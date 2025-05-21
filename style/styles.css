@@ -731,16 +731,11 @@ body.dark-mode .footer-custom .social-icon:hover {
 }
 
 /* Like & comment icon color fix for dark mode */
-body.dark-mode .bi-heart,
-body.dark-mode .bi-heart-fill,
-body.dark-mode .bi-chat-left,
 body.dark-mode .fa-heart,
+body.dark-mode .fa-comment,
 body.dark-mode .fa-fire {
   color: #fff !important;
 }
-
-/* Se vuoi che il like rosso rimanga rosso anche in dark mode */
-body.dark-mode .bi-heart-fill.text-danger,
 body.dark-mode .fa-heart.liked {
   color: #ff4d4f !important;
 }
@@ -753,6 +748,12 @@ body.dark-mode .comment-section .text-muted,
 body.dark-mode .badge.bg-warning.text-dark,
 body.dark-mode .comment-section span,
 body.dark-mode .comment-section .ms-1 {
+  color: #fff !important;
+}
+
+/* Rendi bianchi anche i numeri dei commenti nella pagina popolari in dark mode */
+body.dark-mode .like-section .text-muted,
+body.dark-mode .like-section .ms-3.text-muted {
   color: #fff !important;
 }
 
