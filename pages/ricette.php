@@ -17,6 +17,17 @@ if (isset($_SESSION['welcome'])) {
     unset($_SESSION['welcome']);
 }
 
+// Mostra errori
+if (isset($_SESSION['error'])) {
+    echo '<div class="container mt-3">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                '.$_SESSION['error'].'
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>';
+    unset($_SESSION['error']);
+}
+
 // Query semplificata
 $query = "SELECT 
             r.id,
@@ -34,21 +45,27 @@ $ricette = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <div class="container mt-5">
-    <!-- Form nuova ricetta (rimosso il riferimento all'utente) -->
-    <div class="card mb-4 shadow-sm border-0">
-        <div class="card-body">
-            <h4 class="card-title mb-3">Aggiungi una nuova ricetta 👨‍🍳</h4>
-            <form action="../actions/create_ricetta.php" method="POST">
-                <div class="mb-3">
-                    <input type="text" name="nome" class="form-control" placeholder="Nome ricetta" required>
-                </div>
-                <div class="mb-3">
-                    <textarea class="form-control" name="descrizione" rows="4" placeholder="Ingredienti e preparazione..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Pubblica ricetta</button>
-            </form>
+    <!-- Form nuova ricetta -->
+    <?php if (isset($_SESSION['id_utente'])): ?>
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-body">
+                <h4 class="card-title mb-3">Aggiungi una nuova ricetta 👨‍🍳</h4>
+                <form action="../actions/create_ricetta.php" method="POST">
+                    <div class="mb-3">
+                        <input type="text" name="nome" class="form-control" placeholder="Nome ricetta" required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" name="descrizione" rows="4" placeholder="Ingredienti e preparazione..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Pubblica ricetta</button>
+                </form>
+            </div>
         </div>
-    </div>
+    <?php else: ?>
+        <div class="alert alert-info text-center">
+            <a href="#" class="alert-link" data-bs-toggle="modal" data-bs-target="#loginModal">Accedi</a> per pubblicare una ricetta.
+        </div>
+    <?php endif; ?>
 
     <!-- Lista ricette -->
     <h3 class="mb-4 fw-bold">🍳 Ricette più utilizzate</h3>
@@ -74,6 +91,14 @@ $ricette = $result->fetch_all(MYSQLI_ASSOC);
                         <small class="text-muted">
                             Ricetta pubblicata
                         </small>
+                        <?php if (isset($_SESSION['id_utente'])): ?>
+                            <form action="../actions/delete_ricetta.php" method="POST" onsubmit="return confirm('Sei sicuro di voler eliminare questa ricetta?');">
+                                <input type="hidden" name="ricetta_id" value="<?= $ricetta['id'] ?>">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash-alt"></i> Elimina
+                                </button>
+                            </form>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
