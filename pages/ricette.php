@@ -109,9 +109,6 @@ if (isset($_SESSION['id_utente'])) {
                         <div class="card-body text-center">
                             <h5 class="card-title text-primary"><?= htmlspecialchars($ricetta['nome']) ?></h5>
                             <div class="usage-section mt-3">
-                                <span class="badge bg-success">
-                                    <i class="fas fa-clipboard-list"></i> <?= $ricetta['usage_count'] ?> utilizzi
-                                </span>
                             </div>
                             <?php if (!empty($ricetta['creatore'])): ?>
                                 <small class="text-muted d-block mt-2">
@@ -136,9 +133,6 @@ if (isset($_SESSION['id_utente'])) {
                                 
                                 <div class="d-flex justify-content-between align-items-center mt-4">
                                     <div>
-                                        <span class="badge bg-success">
-                                            <i class="fas fa-clipboard-list"></i> <?= $ricetta['usage_count'] ?> utilizzi
-                                        </span>
                                         <?php if (!empty($ricetta['creatore'])): ?>
                                             <span class="ms-2">
                                                 Creatore: 
