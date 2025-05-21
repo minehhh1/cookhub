@@ -8,10 +8,10 @@
       </div>
       <div class="col-lg-4 text-center mb-4 mb-lg-0">
         <div class="footer-links">
-          <a href="/about.php" class="footer-link">Chi siamo</a>
-          <a href="/contact.php" class="footer-link">Contatti</a>
-          <a href="/privacy.php" class="footer-link">Privacy</a>
-          <a href="/terms.php" class="footer-link">Termini</a>
+          <a href="../pages/about.php" class="footer-link">Chi siamo</a>
+          <a href="../pages/contact.php" class="footer-link">Contatti</a>
+          <a href="../pages/privacy.php" class="footer-link">Privacy</a>
+          <a href="../pages/terms.php" class="footer-link">Termini</a>
         </div>
       </div>
       <div class="col-lg-4 text-center text-lg-end">

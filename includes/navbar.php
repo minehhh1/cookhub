@@ -7,19 +7,23 @@ if (session_status() === PHP_SESSION_NONE) {
 <nav class="navbar navbar-expand-lg py-3">
   <div class="container">
 
-    <!-- Bottone hamburger personalizzato che apre l'offcanvas -->
-    <button class="border-0 bg-transparent me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
-      <img src="../assets/hamburgerLight.svg" alt="Menu" width="30" height="30" class="hamburger-icon-dark d-none">
-      <img src="../assets/hamburgerDark.svg" alt="Menu" width="30" height="30" class="hamburger-icon-light">
-    </button>
-
     <!-- Logo -->
     <a class="navbar-brand ms-2" href="index.php" style="display: flex; align-items: center;">
       <img src="../assets/cookhub.png" alt="Logo" class="d-inline-block align-text-top" style="max-height: 40px;">
     </a>
 
     <!-- Navbar principale -->
-    <div class="collapse navbar-collapse justify-content-end">
+    <div class="collapse navbar-collapse">
+      <!-- Menu sinistra: Popolari e Ricette -->
+      <ul class="navbar-nav me-auto ms-2">
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/popular_posts.php">Popolari</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/ricette.php">Ricette</a>
+        </li>
+      </ul>
+      <!-- Menu destra: Profilo, Login, Registrati, Tema -->
       <ul class="navbar-nav ms-auto">
         <?php if (isset($_SESSION['id_utente'])) { ?>
           <li class="nav-item d-flex align-items-center me-2">
@@ -49,25 +53,6 @@ if (session_status() === PHP_SESSION_NONE) {
   </div>
 </nav>
 
-<!-- Menu -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
-  <div class="offcanvas-header">
-    <a class="navbar-brand" href="index.php">
-      <img src="../assets/cookhub.png" alt="Logo" class="d-inline-block align-text-top" style="max-height: 40px;">
-    </a>
-    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Chiudi"></button>
-  </div>
-  <div class="offcanvas-body">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="../pages/popular_posts.php">Popolari</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../pages/ricette.php">Ricette</a>
-      </li>
-    </ul>
-  </div>
-</div>
 <?php 
   include '../includes/loginModal.html';
   include '../includes/registerModal.html';
