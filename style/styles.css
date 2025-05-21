@@ -756,4 +756,12 @@ body.dark-mode .comment-section .ms-1 {
   color: #fff !important;
 }
 
+/* Footer logo fix: allinea e dimensiona il logo nel footer */
+.footer-logo img {
+  height: 38px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 

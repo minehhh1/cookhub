@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
-        <a href="../pages/index.php" class="footer-logo text-decoration-none">
-          CookHub
+        <a href="../pages/index.php" class="footer-logo text-decoration-none" style="display: inline-flex; align-items: center;">
+          <img src="../assets/cookhub.png" alt="CookHub Logo" style="height: 38px; width: auto;">
         </a>
       </div>
       <div class="col-lg-4 text-center mb-4 mb-lg-0">
