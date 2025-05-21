@@ -3,7 +3,8 @@ session_start();
 require_once '../config/config.php';
 
 if (!isset($_SESSION['id_utente'])) {
-    header("Location: ../pages/login.php");
+    $_SESSION['error'] = "Devi essere loggato per mettere like.";
+    header("Location: ../pages/index.php");
     exit;
 }
 
