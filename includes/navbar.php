@@ -4,23 +4,23 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg py-3">
+  <div class="container">
 
     <!-- Bottone hamburger personalizzato che apre l'offcanvas -->
-    <button class="border-0 bg-transparent" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+    <button class="border-0 bg-transparent me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
       <img src="../assets/hamburgerLight.svg" alt="Menu" width="30" height="30" class="hamburger-icon-dark d-none">
       <img src="../assets/hamburgerDark.svg" alt="Menu" width="30" height="30" class="hamburger-icon-light">
     </button>
 
     <!-- Logo -->
-    <a class="navbar-brand" href="index.php">
-      <img src="../assets/cookhub.png" alt="Logo" class="d-inline-block align-text-top">
+    <a class="navbar-brand ms-2" href="index.php" style="display: flex; align-items: center;">
+      <img src="../assets/cookhub.png" alt="Logo" class="d-inline-block align-text-top" style="max-height: 40px;">
     </a>
 
     <!-- Navbar principale -->
     <div class="collapse navbar-collapse justify-content-end">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ms-auto">
         <?php if (isset($_SESSION['id_utente'])) { ?>
           <li class="nav-item d-flex align-items-center me-2">
             <a href="../pages/profile.php?id=<?= $_SESSION['id_utente'] ?>" class="nav-link p-0">
@@ -40,9 +40,9 @@ if (session_status() === PHP_SESSION_NONE) {
           </li>
         <?php } ?>
         <li class="nav-item d-flex align-items-center">
-        <button id="themeToggle" class="btn btn-sm btn-outline-light ms-3">
-          <i id="themeIcon" class="bi bi-moon-stars-fill"></i>
-        </button>
+          <button id="themeToggle" class="btn btn-sm btn-outline-light ms-3">
+            <i id="themeIcon" class="bi bi-moon-stars-fill"></i>
+          </button>
         </li>
       </ul>
     </div>
@@ -52,7 +52,9 @@ if (session_status() === PHP_SESSION_NONE) {
 <!-- Menu -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasMenuLabel">Menu</h5>
+    <a class="navbar-brand" href="index.php">
+      <img src="../assets/cookhub.png" alt="Logo" class="d-inline-block align-text-top" style="max-height: 40px;">
+    </a>
     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Chiudi"></button>
   </div>
   <div class="offcanvas-body">
@@ -66,7 +68,7 @@ if (session_status() === PHP_SESSION_NONE) {
     </ul>
   </div>
 </div>
- <?php 
+<?php 
   include '../includes/loginModal.html';
   include '../includes/registerModal.html';
 ?>

@@ -46,6 +46,8 @@
 </style>
 
 </head>
-<body style="font-family: 'Nunito', sans-serif;">
-  <?php include '../includes/navbar.php'; ?>
+<body class="d-flex flex-column min-vh-100" style="font-family: 'Nunito', sans-serif;">
+  <div class="page-wrapper d-flex flex-column min-vh-100">
+    <?php include '../includes/navbar.php'; ?>
+    <main class="flex-grow-1">
 

@@ -1,38 +1,46 @@
-<footer class="bg-dark text-white text-center py-5 mt-5 shadow-lg footer-custom">
+<footer class="footer-custom">
   <div class="container">
-    <div class="row align-items-center mb-3">
-      <div class="col-md-4 mb-2 mb-md-0">
-        <a href="/" class="text-white text-decoration-none fs-4 fw-bold">
-          </i>CookHub
+    <div class="row align-items-center">
+      <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+        <a href="../pages/index.php" class="footer-logo text-decoration-none">
+          CookHub
         </a>
       </div>
-      <div class="col-md-4 mb-2 mb-md-0">
-        <a href="/about.php" class="text-white-50 text-decoration-none mx-2">Chi siamo</a>
-        <a href="/contact.php" class="text-white-50 text-decoration-none mx-2">Contatti</a>
-        <a href="/privacy.php" class="text-white-50 text-decoration-none mx-2">Privacy</a>
+      <div class="col-lg-4 text-center mb-4 mb-lg-0">
+        <div class="footer-links">
+          <a href="/about.php" class="footer-link">Chi siamo</a>
+          <a href="/contact.php" class="footer-link">Contatti</a>
+          <a href="/privacy.php" class="footer-link">Privacy</a>
+          <a href="/terms.php" class="footer-link">Termini</a>
+        </div>
       </div>
-      <div class="col-md-4">
-        <a href="https://facebook.com" target="_blank" class="text-white-50 mx-1"><i class="bi bi-facebook fs-5"></i></a>
-        <a href="https://instagram.com" target="_blank" class="text-white-50 mx-1"><i class="bi bi-instagram fs-5"></i></a>
-        <a href="https://twitter.com" target="_blank" class="text-white-50 mx-1"><i class="bi bi-twitter fs-5"></i></a>
+      <div class="col-lg-4 text-center text-lg-end">
+        <div class="footer-social">
+          <a href="https://facebook.com" target="_blank" class="social-icon">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="social-icon">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" class="social-icon">
+            <i class="bi bi-twitter"></i>
+          </a>
+          <a href="https://pinterest.com" target="_blank" class="social-icon">
+            <i class="bi bi-pinterest"></i>
+          </a>
+        </div>
       </div>
     </div>
-    <hr class="border-secondary my-3">
-    <p class="mb-0 small text-white-50">© <?= date('Y') ?> CookHub. Tutti i diritti riservati.</p>
+    
+    <hr class="footer-divider">
+    
+    <div class="text-center">
+      <p class="footer-copyright mb-0">
+        © <?= date('Y') ?> CookHub. Tutti i diritti riservati.
+      </p>
+    </div>
   </div>
 </footer>
-<style>
-  .footer-custom {
-    background: linear-gradient(90deg, #232526 0%, #414345 100%);
-    border-top-left-radius: 1.5rem;
-    border-top-right-radius: 1.5rem;
-    letter-spacing: 0.03em;
-  }
-  .footer-custom a:hover {
-    color: #ffc107 !important;
-    text-decoration: underline;
-  }
-</style>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>

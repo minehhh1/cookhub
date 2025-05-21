@@ -49,7 +49,8 @@ if ($result === false) {
 }
 ?>
 
-<main class="container mt-5">
+<div class="page-wrapper d-flex flex-column min-vh-100">
+  <main class="container mt-5 flex-grow-1">
     <div class="container mt-5">
         <!-- Intestazione modificata -->
         <h2 class="mb-4 fw-bold">🔥 Post più popolari degli ultimi 3 giorni</h2>
@@ -137,7 +138,9 @@ if ($result === false) {
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
-</main>
+  </main>
+  <?php include '../includes/footer.php'; ?>
+</div>
 
 <style>
     .commenti-list {
@@ -156,7 +159,3 @@ if ($result === false) {
         padding: 0.35em 0.65em;
     }
 </style>
-
-<?php
-include '../includes/footer.php';
-?>
