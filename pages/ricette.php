@@ -186,7 +186,3 @@ if (isset($_SESSION['id_utente'])) {
         font-size: 0.9rem;
     }
 </style>
-
-<?php
-include '../includes/footer.php';
-?>
