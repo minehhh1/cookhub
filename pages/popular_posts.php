@@ -53,7 +53,7 @@ if ($result === false) {
   <main class="container mt-5 flex-grow-1">
     <div class="container mt-5">
         <!-- Intestazione modificata -->
-        <h2 class="mb-4 fw-bold">🔥 Post più popolari degli ultimi 3 giorni</h2>
+        <h2 class="mb-4 fw-bold">Post più popolari degli ultimi 3 giorni</h2>
 
         <?php if (empty($posts)): ?>
             <div class="alert alert-secondary text-center">

@@ -18,12 +18,14 @@ if($register === 'register'){
         $stmt->bind_param("ssss", $username, $email, $hashPassword, $temp2);
 
         if($stmt->execute()){
-            echo "Utente inserito correttamente";
+            // Login automatico dopo la registrazione (opzionale)
             $_SESSION['username'] = $username;
-
-            header("location: login.php");
+            $_SESSION['welcome'] = "Registrazione avvenuta con successo! Benvenuto su CookHub.";
+            // Reindirizza alla home
+            header("Location: ../pages/index.php");
+            exit;
         }else{
-            echo "Inserimento fallito: " . $stmt->error;
+            $error = "Inserimento fallito: " . $stmt->error;
         }
     }
 }
@@ -31,4 +33,3 @@ if($register === 'register'){
 if (isset($error)): ?>
         <div class="alert alert-danger"><?= $error ?></div>
     <?php endif; ?>
-    

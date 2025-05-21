@@ -73,7 +73,7 @@ if (isset($_SESSION['id_utente'])) {
         <?php if (isset($_SESSION['id_utente'])): ?>
             <div class="card mb-4 shadow-sm border-0">
                 <div class="card-body">
-                    <h4 class="card-title mb-3">Aggiungi una nuova ricetta 👨‍🍳</h4>
+                    <h4 class="card-title mb-3">Aggiungi una nuova ricetta</h4>
                     <form action="../actions/create_ricetta.php" method="POST">
                         <div class="mb-3">
                             <input type="text" name="nome" class="form-control" placeholder="Nome ricetta" required>
@@ -86,13 +86,13 @@ if (isset($_SESSION['id_utente'])) {
                 </div>
             </div>
         <?php else: ?>
-            <div class="alert alert-info text-center">
-                <a href="#" class="alert-link" data-bs-toggle="modal" data-bs-target="#loginModal">Accedi</a> per pubblicare una ricetta.
-            </div>
-        <?php endif; ?>
+    <div class="alert custom-accedi-alert text-center border-0">
+        <a href="#" class="alert-link custom-accedi-link" data-bs-toggle="modal" data-bs-target="#loginModal">Accedi</a> per pubblicare una ricetta.
+    </div>
+<?php endif; ?>
 
         <!-- Lista ricette -->
-        <h3 class="mb-4 fw-bold">🍳 Le tue ricette</h3>
+        <h3 class="mb-4 fw-bold">Le tue ricette</h3>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             <?php if (empty($ricette)): ?>
@@ -184,5 +184,31 @@ if (isset($_SESSION['id_utente'])) {
     }
     .badge {
         font-size: 0.9rem;
+    }
+    .custom-accedi-link {
+        color: var(--colore-primario) !important;
+        font-weight: 700;
+        text-decoration: underline;
+        transition: color 0.2s;
+    }
+    .custom-accedi-link:hover {
+        color: var(--colore-primario-chiaro) !important;
+    }
+    body.dark-mode .custom-accedi-link {
+        color: #fff !important;
+    }
+    .custom-accedi-alert {
+        font-size: 1.08rem;
+        background: linear-gradient(90deg, #fff7f0 0%, #ffe0cc 100%);
+        color: var(--colore-grigio);
+        border-radius: 14px;
+        border: none;
+        box-shadow: 0 2px 12px rgba(240,138,93,0.08);
+    }
+    body.dark-mode .custom-accedi-alert {
+        background: linear-gradient(90deg, #232526 0%, #1e1e1e 100%);
+        color: #fff;
+        border: none;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.13);
     }
 </style>
