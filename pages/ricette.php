@@ -87,7 +87,7 @@ if (isset($_SESSION['id_utente'])) {
             </div>
         <?php else: ?>
             <div class="alert alert-info text-center">
-                <a href="../pages/login.php" class="alert-link">Accedi</a> per pubblicare una ricetta.
+                <a href="#" class="alert-link" data-bs-toggle="modal" data-bs-target="#loginModal">Accedi</a> per pubblicare una ricetta.
             </div>
         <?php endif; ?>
 
