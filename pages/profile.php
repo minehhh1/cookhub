@@ -27,26 +27,27 @@ $utente = $result->fetch_assoc();
 
 <?php include '../includes/header.php'; ?>
 
-<div class="container mt-5">
+<main class="container profile-page mt-5">
   <div class="row justify-content-center">
-    <div class="col-lg-6">
-      <!-- Card profilo utente -->
-      <div class="card shadow rounded-4 border-0">
-        <div class="card-body">
-          <h2 class="card-title text-center mb-4">Ciao, <?= htmlspecialchars($utente['username']) ?>!</h2>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>ID:</strong> <?= htmlspecialchars($utente['id']) ?></li>
-            <li class="list-group-item"><strong>Username:</strong> <?= htmlspecialchars($utente['username']) ?></li>
-            <li class="list-group-item"><strong>Email:</strong> <?= htmlspecialchars($utente['email']) ?></li>
-            <li class="list-group-item"><strong>Registrato il:</strong> <?= date('d/m/Y', strtotime($utente['data_registrazione'])) ?></li>
-          </ul>
-          <div class="text-center mt-4">
-            <a href="../pages/index.php" class="btn btn-primary">Torna alla home</a>
+    <div class="col-lg-7 col-md-9">
+      <div class="card profile-card shadow rounded-4 border-0 p-4">
+        <div class="card-body text-center">
+          <div class="profile-avatar mb-3">
+            <img src="../assets/img/default-avatar.png" alt="Avatar" class="rounded-circle shadow" width="100" height="100">
           </div>
+          <h2 class="card-title mb-2"><?= htmlspecialchars($utente['username']) ?></h2>
+          <p class="text-muted mb-4">Profilo utente</p>
+          <ul class="list-group list-group-flush mb-4 text-start">
+            <li class="list-group-item bg-transparent border-0 px-0"><strong>ID:</strong> <?= htmlspecialchars($utente['id']) ?></li>
+            <li class="list-group-item bg-transparent border-0 px-0"><strong>Username:</strong> <?= htmlspecialchars($utente['username']) ?></li>
+            <li class="list-group-item bg-transparent border-0 px-0"><strong>Email:</strong> <?= htmlspecialchars($utente['email']) ?></li>
+            <li class="list-group-item bg-transparent border-0 px-0"><strong>Registrato il:</strong> <?= date('d/m/Y', strtotime($utente['data_registrazione'])) ?></li>
+          </ul>
+          <a href="../pages/index.php" class="btn btn-primary rounded-pill px-4">Torna alla home</a>
         </div>
       </div>
     </div>
   </div>
-</div>
+</main>
 
 <?php include '../includes/footer.php'; ?>

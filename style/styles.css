@@ -13,6 +13,22 @@
 --colore-commento-dark: #2a2a2a;
 }
 
+/* Layout generale per posizionare il footer in fondo */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+.footer-custom {
+  background: linear-gradient(90deg, #232526 0%, #414345 100%);
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  letter-spacing: 0.03em;
+}
+
+
 /* === Icone dinamiche per tema === */
 .hamburger-icon-light,
 .profile-icon-light {
