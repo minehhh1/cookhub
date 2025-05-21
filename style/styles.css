@@ -600,12 +600,14 @@ border-radius: 32px;
   background: linear-gradient(90deg, var(--colore-primario), var(--colore-primario-chiaro));
 }
 
+/* Footer logo color fix: rendi la scritta CookHub uguale alle altre anche in tema chiaro */
 .footer-logo {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 1px;
   transition: all 0.3s ease;
   display: inline-block;
+  color: var(--colore-bianco) !important;
 }
 
 .footer-logo:hover {
