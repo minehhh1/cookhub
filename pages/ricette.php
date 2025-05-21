@@ -10,7 +10,7 @@ require_once '../config/config.php';
 if (isset($_SESSION['welcome'])) {
     echo '<div class="container mt-3">
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                '.$_SESSION['welcome'].'
+                '.htmlspecialchars($_SESSION['welcome']).'
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           </div>';
@@ -20,27 +20,50 @@ if (isset($_SESSION['welcome'])) {
 if (isset($_SESSION['error'])) {
     echo '<div class="container mt-3">
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                '.$_SESSION['error'].'
+                '.htmlspecialchars($_SESSION['error']).'
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
           </div>';
     unset($_SESSION['error']);
 }
 
-// Query semplificata
-$query = "SELECT 
-            r.id,
-            r.nome,
-            r.descrizione,
-            COUNT(pr.id) as usage_count
-          FROM Ricetta r
-          LEFT JOIN Piano_ricetta pr ON r.id = pr.id_ricetta
-          GROUP BY r.id
-          ORDER BY usage_count DESC
-          LIMIT 10";
+// Mostra solo le ricette dell'utente loggato
+$ricette = [];
 
-$result = $conn->query($query);
-$ricette = $result->fetch_all(MYSQLI_ASSOC);
+if (isset($_SESSION['id_utente'])) {
+    $id_utente = $_SESSION['id_utente'];
+
+    $query = "SELECT 
+                r.id,
+                r.nome,
+                r.descrizione,
+                r.id_utente,
+                u.username as creatore,
+                u.id as id_creatore,
+                COUNT(pr.id) as usage_count
+              FROM Ricetta r
+              LEFT JOIN Piano_ricetta pr ON r.id = pr.id_ricetta
+              LEFT JOIN Utente u ON r.id_utente = u.id
+              WHERE r.id_utente = ?
+              GROUP BY r.id
+              ORDER BY usage_count DESC";
+
+    if ($stmt = $conn->prepare($query)) {
+        $stmt->bind_param("i", $id_utente);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result) {
+            $ricette = $result->fetch_all(MYSQLI_ASSOC);
+        }
+        $stmt->close();
+    } else {
+        echo '<div class="container mt-3">
+                <div class="alert alert-danger" role="alert">
+                    Errore nella preparazione della query: ' . htmlspecialchars($conn->error) . '
+                </div>
+              </div>';
+    }
+}
 ?>
 
 <div class="container mt-5">
@@ -62,18 +85,18 @@ $ricette = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     <?php else: ?>
         <div class="alert alert-info text-center">
-            <a href="#" class="alert-link" data-bs-toggle="modal" data-bs-target="#loginModal">Accedi</a> per pubblicare una ricetta.
+            <a href="../pages/login.php" class="alert-link">Accedi</a> per pubblicare una ricetta.
         </div>
     <?php endif; ?>
 
     <!-- Lista ricette -->
-    <h3 class="mb-4 fw-bold">🍳 Ricette più utilizzate</h3>
+    <h3 class="mb-4 fw-bold">🍳 Le tue ricette</h3>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         <?php if (empty($ricette)): ?>
             <div class="col-12">
                 <div class="alert alert-secondary text-center">
-                    Nessuna ricetta disponibile. Sii il primo a pubblicarne una!
+                    Non hai ancora pubblicato nessuna ricetta.
                 </div>
             </div>
         <?php else: ?>
@@ -90,6 +113,11 @@ $ricette = $result->fetch_all(MYSQLI_ASSOC);
                                     <i class="fas fa-clipboard-list"></i> <?= $ricetta['usage_count'] ?> utilizzi
                                 </span>
                             </div>
+                            <?php if (!empty($ricetta['creatore'])): ?>
+                                <small class="text-muted d-block mt-2">
+                                    di <?= htmlspecialchars($ricetta['creatore']) ?>
+                                </small>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -107,19 +135,27 @@ $ricette = $result->fetch_all(MYSQLI_ASSOC);
                                 <p class="card-text"><?= nl2br(htmlspecialchars($ricetta['descrizione'])) ?></p>
                                 
                                 <div class="d-flex justify-content-between align-items-center mt-4">
-                                    <span class="badge bg-success">
-                                        <i class="fas fa-clipboard-list"></i> Utilizzata in <?= $ricetta['usage_count'] ?> piani
-                                    </span>
+                                    <div>
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-clipboard-list"></i> <?= $ricetta['usage_count'] ?> utilizzi
+                                        </span>
+                                        <?php if (!empty($ricetta['creatore'])): ?>
+                                            <span class="ms-2">
+                                                Creatore: 
+                                                <a href="../pages/profile.php?id=<?= $ricetta['id_creatore'] ?>" class="text-decoration-none">
+                                                    <?= htmlspecialchars($ricetta['creatore']) ?>
+                                                </a>
+                                            </span>
+                                        <?php endif; ?>
+                                    </div>
                                     
-                                    <?php if (isset($_SESSION['id_utente'])): ?>
-                                        <form action="../actions/delete_ricetta.php" method="POST" 
-                                              onsubmit="return confirm('Sei sicuro di voler eliminare questa ricetta?');">
-                                            <input type="hidden" name="ricetta_id" value="<?= $ricetta['id'] ?>">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                <i class="fas fa-trash-alt"></i> Elimina
-                                            </button>
-                                        </form>
-                                    <?php endif; ?>
+                                    <form action="../actions/delete_ricetta.php" method="POST" 
+                                          onsubmit="return confirm('Sei sicuro di voler eliminare questa ricetta?');">
+                                        <input type="hidden" name="ricetta_id" value="<?= $ricetta['id'] ?>">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-trash-alt"></i> Elimina
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -146,6 +182,9 @@ $ricette = $result->fetch_all(MYSQLI_ASSOC);
     .modal-body {
         max-height: 70vh;
         overflow-y: auto;
+    }
+    .badge {
+        font-size: 0.9rem;
     }
 </style>
 
