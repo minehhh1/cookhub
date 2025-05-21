@@ -149,7 +149,7 @@ if ($result === false) {
                             <?php while($commento = $commenti->fetch_assoc()): ?>
                                 <div class="commento mb-2 p-2 rounded">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <a href="../pages/profile.php?id=<?= $commento['utente_id'] ?>" class="text-decoration-none">
+                                        <a href="../pages/profile.php?id=<?= $commento['utente_id'] ?>" class="user-link">
                                             <strong><?= htmlspecialchars($commento['username']) ?></strong>
                                         </a>
                                         <small class="text-muted"><?= date('d/m/Y H:i', strtotime($commento['data_creazione'])) ?></small>

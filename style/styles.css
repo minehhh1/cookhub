@@ -47,6 +47,33 @@ body.dark-mode .profile-icon-dark {
 display: none;
 }
 
+.profile-card {
+  background: var(--colore-grigio-chiaro);
+  color: var(--colore-grigio);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: background 0.3s, color 0.3s;
+  padding: 2rem;
+}
+
+body.dark-mode .profile-card {
+  background: var(--colore-scuro);
+  color: var(--colore-bianco);
+}
+
+.profile-avatar img {
+  border: 3px solid var(--colore-primario);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.profile-avatar img:hover {
+  transform: scale(1.05);
+}
+
 /* === Commenti (NUOVA SEZIONE AGGIUNTA) === */
 .commenti-list {
 margin-top: 1rem;
@@ -492,3 +519,5 @@ border-radius: 32px;
 .user-username {
   font-size: 0.95rem;
 }
+
+
