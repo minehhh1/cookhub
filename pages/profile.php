@@ -44,13 +44,13 @@ $utente = $result->fetch_assoc();
 
             <!-- Info utente -->
             <ul class="list-group list-group-flush mb-4 text-start">
-              <li class="list-group-item bg-transparent border-0 px-0 py-1">
+              <li class="list-group-item bg-transparent border-0 px-0 py-1 profile-info-item">
                 <strong>Username:</strong> <?= htmlspecialchars($utente['username']) ?>
               </li>
-              <li class="list-group-item bg-transparent border-0 px-0 py-1">
+              <li class="list-group-item bg-transparent border-0 px-0 py-1 profile-info-item">
                 <strong>Email:</strong> <?= htmlspecialchars($utente['email']) ?>
               </li>
-              <li class="list-group-item bg-transparent border-0 px-0 py-1">
+              <li class="list-group-item bg-transparent border-0 px-0 py-1 profile-info-item">
                 <strong>Registrato il:</strong> <?= date('d/m/Y', strtotime($utente['data_registrazione'])) ?>
               </li>
             </ul>
@@ -66,3 +66,13 @@ $utente = $result->fetch_assoc();
   </main>
   <?php include '../includes/footer.php'; ?>
 </div>
+<style>
+/* filepath: c:\xampp\htdocs\cookhub\pages\profile.php */
+.profile-info-item {
+  color: var(--colore-grigio);
+  transition: color 0.3s;
+}
+body.dark-mode .profile-info-item {
+  color: var(--colore-bianco) !important;
+}
+</style>
