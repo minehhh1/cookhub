@@ -116,7 +116,7 @@ if ($result === false) {
                                     <?php while($commento = $commenti->fetch_assoc()): ?>
                                         <div class="commento mb-2 p-2 rounded">
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="../pages/profile.php?id=<?= $commento['utente_id'] ?>" class="text-decoration-none user-link">
+                                                <a href="../pages/profile.php?id=<?= $commento['utente_id'] ?>" class="user-link">
                                                     <strong><?= htmlspecialchars($commento['username']) ?></strong>
                                                 </a>
                                                 <small class="text-muted"><?= date('d/m/Y H:i', strtotime($commento['data_creazione'])) ?></small>
@@ -131,7 +131,7 @@ if ($result === false) {
                         <div class="d-flex justify-content-between align-items-center mt-2">
                             <small class="text-muted">
                                 Post di 
-                                <a href="../pages/profile.php?id=<?= $post['id_utente'] ?>" class="text-decoration-none user-link">
+                                <a href="../pages/profile.php?id=<?= $post['id_utente'] ?>" class="user-link">
                                     <strong><?= htmlspecialchars($post['username']) ?></strong>
                                 </a> 
                                 il <?= date('d/m/Y H:i', strtotime($post['data_creazione'])) ?>
