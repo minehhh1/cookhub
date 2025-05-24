@@ -109,7 +109,7 @@ if (isset($_SESSION['id_utente'])) {
                              data-bs-target="#recipeModal<?= $ricetta['id'] ?>"
                              style="cursor: pointer;">
                             <div class="card-body text-center">
-                                <h5 class="card-title text-primary"><?= htmlspecialchars($ricetta['nome']) ?></h5>
+                                <h5 class="card-title"><?= htmlspecialchars($ricetta['nome']) ?></h5>
                                 <div class="usage-section mt-3">
                                 </div>
                                 <?php if (!empty($ricetta['creatore'])): ?>
@@ -130,7 +130,7 @@ if (isset($_SESSION['id_utente'])) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <h6 class="text-muted mb-3">Ingredienti e preparazione:</h6>
+                                    <h6 class="mb-3">Ingredienti e preparazione:</h6>
                                     <p class="card-text"><?= nl2br(htmlspecialchars($ricetta['descrizione'])) ?></p>
                                     
                                     <div class="d-flex justify-content-between align-items-center mt-4">
@@ -138,7 +138,7 @@ if (isset($_SESSION['id_utente'])) {
                                             <?php if (!empty($ricetta['creatore'])): ?>
                                                 <span class="ms-2">
                                                     Creatore: 
-                                                    <a href="../pages/profile.php?id=<?= $ricetta['id_creatore'] ?>" class="text-decoration-none">
+                                                    <a href="../pages/profile.php?id=<?= $ricetta['id_creatore'] ?>" class="user-link">
                                                         <?= htmlspecialchars($ricetta['creatore']) ?>
                                                     </a>
                                                 </span>

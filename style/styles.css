@@ -202,8 +202,13 @@ body.dark-mode .like-section .text-muted,
 body.dark-mode .like-section .ms-3.text-muted,
 body.dark-mode .fa-heart,
 body.dark-mode .fa-comment,
-body.dark-mode .fa-fire {
-color: var(--colore-bianco) !important;
+body.dark-mode .fa-fire{
+  color: var(--colore-bianco) !important;
+}
+
+/* Colore arancione anche in dark mode per hover sulla navbar */
+body.dark-mode .navbar-nav .nav-link:hover {
+  color: var(--colore-primario) !important;
 }
 
 body.dark-mode .modal-content,
@@ -267,7 +272,7 @@ padding-bottom: 0.75rem;
 }
 
 body.dark-mode .navbar {
-background-color: var(--colore-navbar-dark);
+background-color: var(--colore-navbar-dark) !important;
 color: var(--colore-bianco);
 }
 
@@ -424,6 +429,19 @@ transition: background 0.2s, color 0.2s;
 .btn-outline-danger:hover {
 background-color: var(--colore-primario);
 color: var(--colore-bianco);
+}
+
+/* Bottone invio commento arancione */
+.btn-outline-primary {
+  border-color: var(--colore-primario);
+  color: var(--colore-primario);
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+  background: var(--colore-primario);
+  color: var(--colore-bianco);
+  border-color: var(--colore-primario);
 }
 
 /* === Card e post === */
