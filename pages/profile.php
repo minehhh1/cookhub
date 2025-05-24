@@ -67,7 +67,6 @@ $utente = $result->fetch_assoc();
   <?php include '../includes/footer.php'; ?>
 </div>
 <style>
-/* filepath: c:\xampp\htdocs\cookhub\pages\profile.php */
 .profile-info-item {
   color: var(--colore-grigio);
   transition: color 0.3s;
